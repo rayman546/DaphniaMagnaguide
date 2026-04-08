@@ -1,0 +1,25 @@
+{
+  "name": "daphniamagnaguide",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "vitest run"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rayman546/DaphniaMagnaguide.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/rayman546/DaphniaMagnaguide/issues"
+  },
+  "homepage": "https://github.com/rayman546/DaphniaMagnaguide#readme",
+  "devDependencies": {
+    "jsdom": "^29.0.2",
+    "vitest": "^4.1.3"
+  }
+}
