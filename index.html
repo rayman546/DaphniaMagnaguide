@@ -644,7 +644,8 @@
                             sunlight.</li>
                         <li><strong>pH:</strong> 7.0 – 8.5. Daphnia thrive in alkaline water.</li>
                         <li><strong>Water Source:</strong> Dechlorinated tap water or aged aquarium water.
-                            <strong>Chlorine and chloramine are instantly lethal.</strong></li>
+                            <strong>Chlorine and chloramine are instantly lethal.</strong>
+                        </li>
                         <li class="expert-only"><strong>Dissolved Oxygen (DO):</strong> Maintain > 3.5 mg/L via gentle
                             rolling aeration.</li>
                         <li class="expert-only"><strong>Hardness (GH/KH):</strong> 90 – 180 mg/L CaCO3. Use crushed
@@ -900,7 +901,7 @@
 
         // Calculator
         const calcVol = document.getElementById('calc-vol');
-        const galConv = document.getElementById('gal-conversion');
+        const unitToggle = document.getElementById('unit-toggle');
         const mDensity = document.getElementById('met-density');
         const mHarvest = document.getElementById('met-harvest');
         const mFeed = document.getElementById('met-feed');
@@ -908,24 +909,31 @@
         const mHufa = document.getElementById('met-hufa');
 
         function updateCalc() {
-            const v = parseFloat(calcVol.value);
+            let v = parseFloat(calcVol.value);
             if (isNaN(v) || v <= 0) return;
 
-            galConv.innerText = `(~${(v * 0.264172).toFixed(1)} Gallons)`;
+            // Convert to liters for internal math if gallons is selected
+            const isGallons = unitToggle.value === 'G';
+            const liters = isGallons ? v * 3.78541 : v;
 
-            const den = Math.floor(v * 500);
+            const den = Math.floor(liters * 500);
             const harv = Math.floor(den * 0.25);
-            const feed = (v * 0.0025).toFixed(3); // Adjusted slghtly more precise scaling
-            const exch = (v * 0.20).toFixed(1);
-            const hufa = (v * 1.0).toFixed(1); // 1ml emulsion per L representation
+            const feed = (liters * 0.0025).toFixed(3);
+            const exchL = (liters * 0.20);
+            const hufaL = (liters * 1.0);
 
             mDensity.innerText = den.toLocaleString();
             mHarvest.innerText = harv.toLocaleString();
             mFeed.innerText = `${feed}g`;
-            mExchange.innerText = `${exch} L`;
-            mHufa.innerText = `${hufa} ml`;
+            mExchange.innerText = isGallons ? `${(exchL / 3.78541).toFixed(1)} Gal` : `${exchL.toFixed(1)} L`;
+            mHufa.innerText = `${hufaL.toFixed(1)} ml`;
         }
         calcVol.addEventListener('input', updateCalc);
+        unitToggle.addEventListener('change', () => {
+            if (unitToggle.value === 'G' && calcVol.value === '20') calcVol.value = '5';
+            if (unitToggle.value === 'L' && calcVol.value === '5') calcVol.value = '20';
+            updateCalc();
+        });
         updateCalc();
 
         // Diagnostic Tree
@@ -987,7 +995,7 @@
             soft: {
                 res: "Ecdysozoan Molting Failure (Low GH/KH)",
                 desc: "Crustaceans require calcium to shed their carapace. In water under 90mg/L CaCO3, they get stuck in their own exoskeleton during the molt and die rapidly. Water goes clear because they stop eating.",
-                act: "Add crushed coral, a pinch of plaster of Paris, or specialized remineralizing salts (SaltyShrimp) to hit appropriate hardness.",
+                act: "Add crushed coral, a pinch of plaster of Paris, or specialized remineralizing salts (like SaltyShrimp Shrimp Mineral GH/KH+) to hit appropriate hardness.",
                 danger: true
             }
         };
