@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,7 +44,7 @@
             text-align: center;
             margin-bottom: 30px;
             padding-bottom: 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         h1 {
@@ -58,10 +59,10 @@
             display: inline-flex;
             align-items: center;
             gap: 15px;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0, 0, 0, 0.3);
             padding: 10px 20px;
             border-radius: 30px;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* Toggle Switch styling */
@@ -71,15 +72,25 @@
             width: 50px;
             height: 26px;
         }
-        .switch input { opacity: 0; width: 0; height: 0; }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
         .slider {
             position: absolute;
             cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
             background-color: #475569;
             transition: .4s;
             border-radius: 34px;
         }
+
         .slider:before {
             position: absolute;
             content: "";
@@ -91,14 +102,31 @@
             transition: .4s;
             border-radius: 50%;
         }
-        input:checked + .slider { background-color: var(--expert-accent); }
-        input:checked + .slider:before { transform: translateX(24px); }
+
+        input:checked+.slider {
+            background-color: var(--expert-accent);
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(24px);
+        }
 
         /* Conditional Rendering */
-        .expert-only { display: none; }
-        body.expert-mode .expert-only { display: block; }
-        body.expert-mode span.expert-only { display: inline; }
-        body.expert-mode .beginner-only { display: none; }
+        .expert-only {
+            display: none;
+        }
+
+        body.expert-mode .expert-only {
+            display: block;
+        }
+
+        body.expert-mode span.expert-only {
+            display: inline;
+        }
+
+        body.expert-mode .beginner-only {
+            display: none;
+        }
 
         .expert-badge {
             background: var(--expert-bg);
@@ -145,29 +173,72 @@
             min-width: 120px;
         }
 
-        .tab-btn:hover { color: var(--text-primary); background: rgba(255,255,255,0.05); }
-        .tab-btn.active { background: var(--accent-color); color: #000; box-shadow: 0 0 15px rgba(56, 189, 248, 0.4); }
+        .tab-btn:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .tab-btn.active {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+        }
 
         /* Content Sections */
-        .tab-content { display: none; animation: fadeIn 0.4s ease; }
-        .tab-content.active { display: block; }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .card {
             background: var(--panel-bg);
             border-radius: var(--border-radius);
             padding: 25px;
             margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        h2 { color: var(--accent-color); margin-bottom: 15px; font-size: 1.5rem; }
-        h3 { color: #cbd5e1; margin: 15px 0 10px; font-size: 1.2rem; }
-        p { margin-bottom: 15px; }
-        ul { margin-left: 20px; margin-bottom: 15px; }
-        li { margin-bottom: 8px; }
+        h2 {
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        h3 {
+            color: #cbd5e1;
+            margin: 15px 0 10px;
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
 
         /* Calculator Styles */
         .calc-input {
@@ -176,6 +247,7 @@
             align-items: center;
             margin-bottom: 25px;
         }
+
         input[type="number"] {
             background: #0f172a;
             border: 1px solid #334155;
@@ -185,357 +257,465 @@
             font-size: 1.1rem;
             width: 150px;
         }
-        input[type="number"]:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2); }
-        
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.2);
+        }
+
         .result-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
         }
+
         .result-box {
-            background: rgba(0,0,0,0.2);
+            background: rgba(0, 0, 0, 0.2);
             padding: 15px;
             border-radius: 8px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
-        .result-val { font-size: 1.8rem; font-weight: bold; color: var(--accent-color); margin: 10px 0;}
+
+        .result-val {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            margin: 10px 0;
+        }
 
         /* Troubleshooting Tree */
-        #tree-container { background: #0f172a; padding: 20px; border-radius: 8px; min-height: 200px;}
-        .tree-question { font-size: 1.2rem; margin-bottom: 20px; color: #f8fafc; }
-        .tree-btn {
-            display: block; width: 100%; text-align: left; background: var(--panel-bg);
-            color: var(--text-primary); border: 1px solid #334155; padding: 15px;
-            margin-bottom: 10px; border-radius: 8px; cursor: pointer; transition: 0.2s;
+        #tree-container {
+            background: #0f172a;
+            padding: 20px;
+            border-radius: 8px;
+            min-height: 200px;
         }
-        .tree-btn:hover { background: #334155; border-color: var(--accent-color); }
-        .tree-result { padding: 20px; border-left: 4px solid var(--accent-color); background: rgba(56,189,248,0.1); }
-        .tree-result.danger { border-left-color: var(--danger); background: rgba(239, 68, 68, 0.1); color: #fca5a5;}
+
+        .tree-question {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #f8fafc;
+        }
+
+        .tree-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: var(--panel-bg);
+            color: var(--text-primary);
+            border: 1px solid #334155;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .tree-btn:hover {
+            background: #334155;
+            border-color: var(--accent-color);
+        }
+
+        .tree-result {
+            padding: 20px;
+            border-left: 4px solid var(--accent-color);
+            background: rgba(56, 189, 248, 0.1);
+        }
+
+        .tree-result.danger {
+            border-left-color: var(--danger);
+            background: rgba(239, 68, 68, 0.1);
+            color: #fca5a5;
+        }
 
         /* Responsiveness */
         @media (max-width: 768px) {
-            .tabs { flex-direction: column; }
-            h1 { font-size: 1.8rem; }
+            .tabs {
+                flex-direction: column;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <header>
-        <h1>Daphnia Magna Culturing Guide</h1>
-        <p>From Nano Jars to Stock Tanks: The Complete Live Food Blueprint.</p>
-        
-        <div class="toggle-wrapper">
-            <span style="font-weight: 600; color: #94a3b8;">Beginner</span>
-            <label class="switch">
-                <input type="checkbox" id="experienceToggle">
-                <span class="slider"></span>
-            </label>
-            <span style="font-weight: 600; color: var(--expert-accent);">Expert Mode</span>
-        </div>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Daphnia Magna Culturing Guide</h1>
+            <p>From Nano Jars to Stock Tanks: The Complete Live Food Blueprint.</p>
 
-    <div class="tabs">
-        <button class="tab-btn active" onclick="openTab('containers', event)">Containers &amp; Setup</button>
-        <button class="tab-btn" onclick="openTab('chemistry', event)">Water Chemistry</button>
-        <button class="tab-btn" onclick="openTab('feeding', event)">Feeding</button>
-        <button class="tab-btn" onclick="openTab('harvest', event)">Harvesting</button>
-        <button class="tab-btn" onclick="openTab('calculator', event)">Calculator</button>
-        <button class="tab-btn" onclick="openTab('troubleshooting', event)">Troubleshooting</button>
+            <div class="toggle-wrapper">
+                <span style="font-weight: 600; color: #94a3b8;">Beginner</span>
+                <label class="switch">
+                    <input type="checkbox" id="experienceToggle">
+                    <span class="slider"></span>
+                </label>
+                <span style="font-weight: 600; color: var(--expert-accent);">Expert Mode</span>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="openTab('containers', event)">Containers &amp; Setup</button>
+            <button class="tab-btn" onclick="openTab('chemistry', event)">Water Chemistry</button>
+            <button class="tab-btn" onclick="openTab('feeding', event)">Feeding</button>
+            <button class="tab-btn" onclick="openTab('harvest', event)">Harvesting</button>
+            <button class="tab-btn" onclick="openTab('calculator', event)">Calculator</button>
+            <button class="tab-btn" onclick="openTab('troubleshooting', event)">Troubleshooting</button>
+        </div>
+
+        <!-- 1: Containers & Setup -->
+        <section id="containers" class="tab-content active">
+            <div class="card">
+                <h2>Container Scale &amp; Aeration</h2>
+                <div
+                    style="margin-bottom: 20px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                    <img src="nano_culture_jar.png" alt="Nano culture jar illuminating a green tint"
+                        style="width: 100%; max-height: 400px; object-fit: cover; display: block;">
+                </div>
+                <p>Daphnia can be cultured in almost any clean vessel that holds water, allowing you to tailor your
+                    setup to your space and feeding requirements.</p>
+
+                <h3>1. Nano Setups (&lt; 4 Liters)</h3>
+                <p><strong>Ideal for:</strong> Casual feeding for a single nano tank, breeding fry.</p>
+                <p class="beginner-only">Use large glass jars or repurposed transparent plastic bottles. They do not
+                    require an air pump if placed in a brightly lit area to encourage gentle algae growth.</p>
+                <div class="expert-only expert-callout">
+                    <span class="expert-badge">Expert</span> Micro-cultures are highly susceptible to sudden crashes due
+                    to trace ammonia spikes. Their low thermal mass makes them vulnerable to rapid temperature
+                    fluctuations. Daily monitoring and a rigid feeding schedule are mandatory.
+                </div>
+
+                <h3>2. Medium setups (10 - 40 Liters)</h3>
+                <p><strong>Ideal for:</strong> Regularly feeding several community tanks.</p>
+                <p>Plastic storage totes or empty small aquariums work beautifully. Utilize a slow-bubbling airline or a
+                    gentle sponge filter to keep the water from stagnating.</p>
+
+                <h3>3. Large Stock Tanks (50 - 200+ Liters)</h3>
+                <p><strong>Ideal for:</strong> Heavy feeding, breeders, fishrooms.</p>
+                <p>Outdoor or indoor masonry tubs and large garbage cans. These setups are the most stable. In outdoor
+                    settings, naturally occurring algae and seasonal temperature shifts dictate the reproductive cycles.
+                </p>
+
+                <div class="expert-only expert-callout">
+                    <span class="expert-badge">Expert</span> High-volume outdoor cultures benefit immensely from the
+                    increased surface-area-to-volume ratio. However, beware of unwanted macro-predators like dragonfly
+                    nymphs. To mitigate gas entrapment under the D. magna carapace, use open rigid airline tubing rather
+                    than fine-pore airstones.
+                </div>
+            </div>
+        </section>
+
+        <!-- 2: Water Chemistry -->
+        <section id="chemistry" class="tab-content">
+            <div class="card">
+                <h2>Water Parameters &amp; Environment</h2>
+                <div
+                    style="margin-bottom: 20px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                    <img src="daphnia_macro.png" alt="Macro photography of Daphnia Magna"
+                        style="width: 100%; max-height: 400px; object-fit: cover; display: block;">
+                </div>
+                <p>Daphnia magna are sensitive to their environment. Treating them with the same care as fish ensures
+                    maximum yield.</p>
+
+                <ul>
+                    <li><strong>Temperature:</strong> 18°C – 22°C is optimal. <span class="beginner-only">Avoid placing
+                            containers in direct, harsh sunlight that may overheat the water.</span></li>
+                    <li><strong>pH:</strong> 7.0 – 8.5. They prefer slightly alkaline water.</li>
+                    <li><strong>Water Source:</strong> Dechlorinated tap water or aged tank water is mandatory. Chlorine
+                        kills them instantly.</li>
+                </ul>
+
+                <div class="expert-only expert-callout">
+                    <span class="expert-badge">Expert Deep Dive</span>
+                    <p><strong>Thermal Stress &amp; Hemoglobin:</strong> When temperatures exceed 25°C, oxygen
+                        saturation drops. In response, D. magna produce hemoglobin, causing the culture to turn a
+                        distinct red or pink color. This is a severe warning sign of impending anoxia.</p>
+                    <p><strong>Water Hardness:</strong> Maintain 90–180 mg/L CaCO3. Soft water causes failed molting
+                        (ecdysozoan shedding issues). Adding crushed coral or a small amount of Plaster of Paris can
+                        buffer osmotic stress in soft-water regions.</p>
+                </div>
+
+                <h3>Water Changes</h3>
+                <p>Replace 10–25% of the culture water weekly. Siphon the bottom carefully to remove waste (mulm) and
+                    replace it with slow-dripped, fresh dechlorinated water.</p>
+            </div>
+        </section>
+
+        <!-- 3: Feeding -->
+        <section id="feeding" class="tab-content">
+            <div class="card">
+                <h2>Feeding Your Daphnia</h2>
+                <div
+                    style="margin-bottom: 20px; border-radius: 12px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                    <img src="spirulina_slurry.png" alt="Swirling spirulina slurry for feeding"
+                        style="width: 100%; max-height: 400px; object-fit: cover; display: block;">
+                </div>
+                <p>Daphnia are filter feeders. They consume microscopic particles suspended in the water column. <strong
+                        style="color: #ef4444;">The Golden Rule: Never feed if the water is still cloudy from the
+                        previous feeding.</strong></p>
+
+                <h3>Food Types</h3>
+                <ul>
+                    <li><strong>Green Water (Microalgae):</strong> The absolute best and most natural food. If you can
+                        grow green water in a separate container in the sun, feed it heavily. It will not foul the water
+                        easily.</li>
+                    <li><strong>Spirulina Powder:</strong> Highly nutritious, but very dense. <span
+                            class="expert-only">Because it is dead organic matter, bacteria will rapidly decompose
+                            excess powder, driving an ammonia spike.</span> Mix the powder into a small jar of water and
+                        shake it vigorously to create a "slurry" before dosing.</li>
+                    <li><strong>Active Dry Yeast:</strong> Cheap and easily accessible. Creates an immediate bloom of
+                        bacteria for the Daphnia to eat. Must be used very sparingly.</li>
+                </ul>
+
+                <div class="expert-only expert-callout">
+                    <span class="expert-badge">Expert Nutritional Enrichment</span>
+                    Yeast alone is severely deficient in Highly Unsaturated Fatty Acids (HUFAs) and Essential Amino
+                    Acids. If feeding primarily yeast, you must "gut load" the Daphnia with an enrichment formula,
+                    astaxanthin powder, or emulsified fish oils 2-4 hours prior to feeding them to your fish to transfer
+                    proper nutrition.
+                </div>
+            </div>
+        </section>
+
+        <!-- 4: Harvesting -->
+        <section id="harvest" class="tab-content">
+            <div class="card">
+                <h2>Harvesting &amp; Tank Hygiene</h2>
+                <p>Harvesting prevents overcrowding, which prompts population stagnation.</p>
+
+                <h3>How to Harvest</h3>
+                <p>Use a fine-mesh brine shrimp net. Scoop gently near the surface or the side of the container where
+                    they congregate toward the light. Alternatively, use a siphon to drain water through a sieve—this
+                    doubles as a water change!</p>
+
+                <h3>How Often?</h3>
+                <p>Aim to harvest up to <strong>25% of the visible population</strong> every 3 to 4 days. This keeps the
+                    population predominantly young and deeply focused on reproduction rather than resource competition.
+                </p>
+
+                <div class="expert-only expert-callout">
+                    <span class="expert-badge">Expert</span> High-density populations limit their own fecundity via
+                    chemical signaling and physical crowding. Harvesting breaks this loop. Furthermore, always rinse the
+                    harvested Daphnia in clean, dechlorinated water before introducing them to your fish tank to avoid
+                    cross-contaminating your aquarium with ammonia-heavy culture water.
+                </div>
+            </div>
+        </section>
+
+        <!-- 5: Calculator -->
+        <section id="calculator" class="tab-content">
+            <div class="card">
+                <h2>Culture Health &amp; Feeding Calculator</h2>
+                <p>Enter the workable volume of your main culture container to get scientifically approximated
+                    benchmarks for population density and feeding.</p>
+
+                <div class="calc-input">
+                    <label><strong>Container Volume:</strong></label>
+                    <input type="number" id="volInput" value="20" min="1" step="1"> Liters
+                </div>
+
+                <div class="result-grid">
+                    <div class="result-box">
+                        <div>Max Sustainable Density</div>
+                        <div class="result-val" id="resMax">10,000</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary);">Total Daphnia</div>
+                    </div>
+                    <div class="result-box">
+                        <div>Target Weekly Harvest</div>
+                        <div class="result-val" id="resHarv">2,500</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary);">Daphnia removed</div>
+                    </div>
+                    <div class="result-box">
+                        <div>Max Dry Feed (Spirulina)</div>
+                        <div class="result-val" id="resFeed">0.02g</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary);">Per feeding interval</div>
+                    </div>
+                    <div class="result-box expert-only">
+                        <div>Water Change Volume</div>
+                        <div class="result-val" id="resWater">4.0 L</div>
+                        <div style="font-size: 0.8rem; color: var(--text-secondary);">20% Weekly exchange</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6: Troubleshooting Tree -->
+        <section id="troubleshooting" class="tab-content">
+            <div class="card">
+                <h2>Troubleshooting Diagnostic Tree</h2>
+                <p>Cultures invariably crash if mistreated. Select the symptom that best matches your situation to
+                    identify the cause.</p>
+
+                <div id="tree-container">
+                    <!-- Javascript will inject tree nodes here -->
+                </div>
+
+                <div class="expert-only expert-callout" style="margin-top: 20px;">
+                    <span class="expert-badge">Expert Recovery Tactics</span>
+                    If a total wipeout occurs, do not throw the detritus away immediately. Stressed Daphnia produce
+                    <strong>Ephippia</strong> (dark, saddle-shaped, dormant resting cysts). Siphon away the fouled
+                    water, gently replace it with fresh, cool water, and wait. Ephippia can hatch weeks or even months
+                    later, rebooting your culture automatically.
+                </div>
+            </div>
+        </section>
+
     </div>
 
-    <!-- 1: Containers & Setup -->
-    <section id="containers" class="tab-content active">
-        <div class="card">
-            <h2>Container Scale &amp; Aeration</h2>
-            <p>Daphnia can be cultured in almost any clean vessel that holds water, allowing you to tailor your setup to your space and feeding requirements.</p>
-
-            <h3>1. Nano Setups (&lt; 4 Liters)</h3>
-            <p><strong>Ideal for:</strong> Casual feeding for a single nano tank, breeding fry.</p>
-            <p class="beginner-only">Use large glass jars or repurposed transparent plastic bottles. They do not require an air pump if placed in a brightly lit area to encourage gentle algae growth.</p>
-            <div class="expert-only expert-callout">
-                <span class="expert-badge">Expert</span> Micro-cultures are highly susceptible to sudden crashes due to trace ammonia spikes. Their low thermal mass makes them vulnerable to rapid temperature fluctuations. Daily monitoring and a rigid feeding schedule are mandatory.
-            </div>
-
-            <h3>2. Medium setups (10 - 40 Liters)</h3>
-            <p><strong>Ideal for:</strong> Regularly feeding several community tanks.</p>
-            <p>Plastic storage totes or empty small aquariums work beautifully. Utilize a slow-bubbling airline or a gentle sponge filter to keep the water from stagnating.</p>
-
-            <h3>3. Large Stock Tanks (50 - 200+ Liters)</h3>
-            <p><strong>Ideal for:</strong> Heavy feeding, breeders, fishrooms.</p>
-            <p>Outdoor or indoor masonry tubs and large garbage cans. These setups are the most stable. In outdoor settings, naturally occurring algae and seasonal temperature shifts dictate the reproductive cycles.</p>
-            
-            <div class="expert-only expert-callout">
-                <span class="expert-badge">Expert</span> High-volume outdoor cultures benefit immensely from the increased surface-area-to-volume ratio. However, beware of unwanted macro-predators like dragonfly nymphs. To mitigate gas entrapment under the D. magna carapace, use open rigid airline tubing rather than fine-pore airstones.
-            </div>
-        </div>
-    </section>
-
-    <!-- 2: Water Chemistry -->
-    <section id="chemistry" class="tab-content">
-        <div class="card">
-            <h2>Water Parameters &amp; Environment</h2>
-            <p>Daphnia magna are sensitive to their environment. Treating them with the same care as fish ensures maximum yield.</p>
-            
-            <ul>
-                <li><strong>Temperature:</strong> 18°C – 22°C is optimal. <span class="beginner-only">Avoid placing containers in direct, harsh sunlight that may overheat the water.</span></li>
-                <li><strong>pH:</strong> 7.0 – 8.5. They prefer slightly alkaline water.</li>
-                <li><strong>Water Source:</strong> Dechlorinated tap water or aged tank water is mandatory. Chlorine kills them instantly.</li>
-            </ul>
-
-            <div class="expert-only expert-callout">
-                <span class="expert-badge">Expert Deep Dive</span> 
-                <p><strong>Thermal Stress &amp; Hemoglobin:</strong> When temperatures exceed 25°C, oxygen saturation drops. In response, D. magna produce hemoglobin, causing the culture to turn a distinct red or pink color. This is a severe warning sign of impending anoxia.</p>
-                <p><strong>Water Hardness:</strong> Maintain 90–180 mg/L CaCO3. Soft water causes failed molting (ecdysozoan shedding issues). Adding crushed coral or a small amount of Plaster of Paris can buffer osmotic stress in soft-water regions.</p>
-            </div>
-            
-            <h3>Water Changes</h3>
-            <p>Replace 10–25% of the culture water weekly. Siphon the bottom carefully to remove waste (mulm) and replace it with slow-dripped, fresh dechlorinated water.</p>
-        </div>
-    </section>
-
-    <!-- 3: Feeding -->
-    <section id="feeding" class="tab-content">
-        <div class="card">
-            <h2>Feeding Your Daphnia</h2>
-            <p>Daphnia are filter feeders. They consume microscopic particles suspended in the water column. <strong style="color: #ef4444;">The Golden Rule: Never feed if the water is still cloudy from the previous feeding.</strong></p>
-
-            <h3>Food Types</h3>
-            <ul>
-                <li><strong>Green Water (Microalgae):</strong> The absolute best and most natural food. If you can grow green water in a separate container in the sun, feed it heavily. It will not foul the water easily.</li>
-                <li><strong>Spirulina Powder:</strong> Highly nutritious, but very dense. <span class="expert-only">Because it is dead organic matter, bacteria will rapidly decompose excess powder, driving an ammonia spike.</span> Mix the powder into a small jar of water and shake it vigorously to create a "slurry" before dosing.</li>
-                <li><strong>Active Dry Yeast:</strong> Cheap and easily accessible. Creates an immediate bloom of bacteria for the Daphnia to eat. Must be used very sparingly.</li>
-            </ul>
-
-            <div class="expert-only expert-callout">
-                <span class="expert-badge">Expert Nutritional Enrichment</span> 
-                Yeast alone is severely deficient in Highly Unsaturated Fatty Acids (HUFAs) and Essential Amino Acids. If feeding primarily yeast, you must "gut load" the Daphnia with an enrichment formula, astaxanthin powder, or emulsified fish oils 2-4 hours prior to feeding them to your fish to transfer proper nutrition.
-            </div>
-        </div>
-    </section>
-
-    <!-- 4: Harvesting -->
-    <section id="harvest" class="tab-content">
-        <div class="card">
-            <h2>Harvesting &amp; Tank Hygiene</h2>
-            <p>Harvesting prevents overcrowding, which prompts population stagnation.</p>
-            
-            <h3>How to Harvest</h3>
-            <p>Use a fine-mesh brine shrimp net. Scoop gently near the surface or the side of the container where they congregate toward the light. Alternatively, use a siphon to drain water through a sieve—this doubles as a water change!</p>
-
-            <h3>How Often?</h3>
-            <p>Aim to harvest up to <strong>25% of the visible population</strong> every 3 to 4 days. This keeps the population predominantly young and deeply focused on reproduction rather than resource competition.</p>
-
-            <div class="expert-only expert-callout">
-                <span class="expert-badge">Expert</span> High-density populations limit their own fecundity via chemical signaling and physical crowding. Harvesting breaks this loop. Furthermore, always rinse the harvested Daphnia in clean, dechlorinated water before introducing them to your fish tank to avoid cross-contaminating your aquarium with ammonia-heavy culture water.
-            </div>
-        </div>
-    </section>
-
-    <!-- 5: Calculator -->
-    <section id="calculator" class="tab-content">
-        <div class="card">
-            <h2>Culture Health &amp; Feeding Calculator</h2>
-            <p>Enter the workable volume of your main culture container to get scientifically approximated benchmarks for population density and feeding.</p>
-            
-            <div class="calc-input">
-                <label><strong>Container Volume:</strong></label>
-                <input type="number" id="volInput" value="20" min="1" step="1"> Liters
-            </div>
-
-            <div class="result-grid">
-                <div class="result-box">
-                    <div>Max Sustainable Density</div>
-                    <div class="result-val" id="resMax">10,000</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Total Daphnia</div>
-                </div>
-                <div class="result-box">
-                    <div>Target Weekly Harvest</div>
-                    <div class="result-val" id="resHarv">2,500</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Daphnia removed</div>
-                </div>
-                <div class="result-box">
-                    <div>Max Dry Feed (Spirulina)</div>
-                    <div class="result-val" id="resFeed">0.02g</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary);">Per feeding interval</div>
-                </div>
-                <div class="result-box expert-only">
-                    <div>Water Change Volume</div>
-                    <div class="result-val" id="resWater">4.0 L</div>
-                    <div style="font-size: 0.8rem; color: var(--text-secondary);">20% Weekly exchange</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6: Troubleshooting Tree -->
-    <section id="troubleshooting" class="tab-content">
-        <div class="card">
-            <h2>Troubleshooting Diagnostic Tree</h2>
-            <p>Cultures invariably crash if mistreated. Select the symptom that best matches your situation to identify the cause.</p>
-            
-            <div id="tree-container">
-                <!-- Javascript will inject tree nodes here -->
-            </div>
-            
-            <div class="expert-only expert-callout" style="margin-top: 20px;">
-                <span class="expert-badge">Expert Recovery Tactics</span>
-                If a total wipeout occurs, do not throw the detritus away immediately. Stressed Daphnia produce <strong>Ephippia</strong> (dark, saddle-shaped, dormant resting cysts). Siphon away the fouled water, gently replace it with fresh, cool water, and wait. Ephippia can hatch weeks or even months later, rebooting your culture automatically.
-            </div>
-        </div>
-    </section>
-
-</div>
-
-<script>
-    // System Mode Toggle (Beginner / Expert)
-    const toggle = document.getElementById('experienceToggle');
-    toggle.addEventListener('change', (e) => {
-        if (e.target.checked) {
-            document.body.classList.add('expert-mode');
-        } else {
-            document.body.classList.remove('expert-mode');
-        }
-    });
-
-    // Tab Navigation Logic
-    function openTab(tabId, event) {
-        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-        
-        document.getElementById(tabId).classList.add('active');
-        if(event) {
-            event.currentTarget.classList.add('active');
-        }
-    }
-
-    // Calculator Logic
-    const volInput = document.getElementById('volInput');
-    const resMax = document.getElementById('resMax');
-    const resHarv = document.getElementById('resHarv');
-    const resFeed = document.getElementById('resFeed');
-    const resWater = document.getElementById('resWater');
-
-    function updateCalc() {
-        const v = parseFloat(volInput.value);
-        if (isNaN(v) || v <= 0) return;
-        
-        // Approx 500 Daphnia per Liter at high-density
-        const maxPop = Math.floor(v * 500); 
-        // 25% harvest 
-        const harvest = Math.floor(maxPop * 0.25);
-        // Approx 0.001 grams of pure dry spirulina powder per Liter (very conservative)
-        const feed = (v * 0.001).toFixed(3);
-        const water = (v * 0.20).toFixed(1);
-
-        resMax.innerText = maxPop.toLocaleString();
-        resHarv.innerText = harvest.toLocaleString();
-        resFeed.innerText = `${feed}g`;
-        resWater.innerText = `${water} L`;
-    }
-    volInput.addEventListener('input', updateCalc);
-    updateCalc();
-
-    // Troubleshooting Decision Tree Logic
-    const treeData = {
-        start: {
-            q: "What is the primary symptom of your culture issue?",
-            opts: [
-                { text: "The water smells foul and is very cloudy/milky.", next: "cloudy" },
-                { text: "The water is clear, but Daphnia are dying rapidly.", next: "clear_dying" },
-                { text: "The Daphnia are turning a deep pink or red color.", next: "pink" }
-            ]
-        },
-        cloudy: {
-            res: "OVERFEEDING / BACTERIAL BLOOM",
-            desc: "You have fed too much dry powder or yeast. The bacteria breaking down the excess food are consuming all the oxygen and producing ammonia.",
-            act: "Action: Perform an immediate 50% water change using cool, dechlorinated water. Cease all feeding for 48-72 hours until the water is crystal clear again.",
-            danger: true
-        },
-        clear_dying: {
-            q: "What is the recent temperature history and water source?",
-            opts: [
-                { text: "Temperature has been above 25°C (77°F).", next: "heat" },
-                { text: "I just did a water change using straight tap water.", next: "chlorine" },
-                { text: "Temperature is fine, water is primed. They are just vanishing.", next: "starvation" }
-            ]
-        },
-        pink: {
-            res: "SEVERE OXYGEN DEPLETION",
-            desc: "Daphnia produce hemoglobin (turning pink/red) when O2 levels are lethally low. This is usually caused by stagnant water or excessively warm temperatures.",
-            act: "Action: Add gentle aeration immediately. Move the container to a cooler location (18-20°C).",
-            danger: true
-        },
-        heat: {
-            res: "HEAT STRESS",
-            desc: "Temperatures over 24°C slow production, and over 28°C cause rapid die-offs due to oxygen starvation.",
-            act: "Action: Relocate the culture to a basement, lower shelf, or shaded area. Increase surface agitation slightly.",
-            danger: false
-        },
-        chlorine: {
-            res: "CHLORINE / CHLORAMINE TOXICITY",
-            desc: "Tap water contains disinfectants that disintegrate Daphnia instantly.",
-            act: "Action: The culture may be a total loss. Prime the water immediately. Check the bottom for ephippia (resting eggs) and wait to see if they hatch in a few weeks.",
-            danger: true
-        },
-        starvation: {
-            res: "STARVATION / WATER STAGNATION",
-            desc: "If the water is crystal clear and conditions are stable, the population has likely exhausted its food supply or trace minerals.",
-            act: "Action: Feed a slurry of spirulina or active yeast. If feeding doesn't help, ensure the container isn't being contaminated by household aerosols or pesticides.",
-            danger: false
-        }
-    };
-
-    const treeContainer = document.getElementById('tree-container');
-
-    function renderTree(nodeId) {
-        treeContainer.innerHTML = '';
-        const node = treeData[nodeId];
-
-        if (node.q) {
-            const heading = document.createElement('div');
-            heading.className = 'tree-question';
-            heading.innerText = node.q;
-            treeContainer.appendChild(heading);
-
-            node.opts.forEach(opt => {
-                const btn = document.createElement('button');
-                btn.className = 'tree-btn';
-                btn.innerText = opt.text;
-                btn.onclick = () => renderTree(opt.next);
-                treeContainer.appendChild(btn);
-            });
-            
-            if(nodeId !== 'start') {
-                const reset = document.createElement('button');
-                reset.className = 'tree-btn';
-                reset.style.marginTop = '15px';
-                reset.style.background = 'transparent';
-                reset.style.borderColor = 'transparent';
-                reset.style.color = 'var(--accent-color)';
-                reset.innerText = "← Start Over";
-                reset.onclick = () => renderTree('start');
-                treeContainer.appendChild(reset);
+    <script>
+        // System Mode Toggle (Beginner / Expert)
+        const toggle = document.getElementById('experienceToggle');
+        toggle.addEventListener('change', (e) => {
+            if (e.target.checked) {
+                document.body.classList.add('expert-mode');
+            } else {
+                document.body.classList.remove('expert-mode');
             }
-        } else if (node.res) {
-            const resDiv = document.createElement('div');
-            resDiv.className = `tree-result ${node.danger ? 'danger' : ''}`;
-            resDiv.innerHTML = `
+        });
+
+        // Tab Navigation Logic
+        function openTab(tabId, event) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            if (event) {
+                event.currentTarget.classList.add('active');
+            }
+        }
+
+        // Calculator Logic
+        const volInput = document.getElementById('volInput');
+        const resMax = document.getElementById('resMax');
+        const resHarv = document.getElementById('resHarv');
+        const resFeed = document.getElementById('resFeed');
+        const resWater = document.getElementById('resWater');
+
+        function updateCalc() {
+            const v = parseFloat(volInput.value);
+            if (isNaN(v) || v <= 0) return;
+
+            // Approx 500 Daphnia per Liter at high-density
+            const maxPop = Math.floor(v * 500);
+            // 25% harvest 
+            const harvest = Math.floor(maxPop * 0.25);
+            // Approx 0.001 grams of pure dry spirulina powder per Liter (very conservative)
+            const feed = (v * 0.001).toFixed(3);
+            const water = (v * 0.20).toFixed(1);
+
+            resMax.innerText = maxPop.toLocaleString();
+            resHarv.innerText = harvest.toLocaleString();
+            resFeed.innerText = `${feed}g`;
+            resWater.innerText = `${water} L`;
+        }
+        volInput.addEventListener('input', updateCalc);
+        updateCalc();
+
+        // Troubleshooting Decision Tree Logic
+        const treeData = {
+            start: {
+                q: "What is the primary symptom of your culture issue?",
+                opts: [
+                    { text: "The water smells foul and is very cloudy/milky.", next: "cloudy" },
+                    { text: "The water is clear, but Daphnia are dying rapidly.", next: "clear_dying" },
+                    { text: "The Daphnia are turning a deep pink or red color.", next: "pink" }
+                ]
+            },
+            cloudy: {
+                res: "OVERFEEDING / BACTERIAL BLOOM",
+                desc: "You have fed too much dry powder or yeast. The bacteria breaking down the excess food are consuming all the oxygen and producing ammonia.",
+                act: "Action: Perform an immediate 50% water change using cool, dechlorinated water. Cease all feeding for 48-72 hours until the water is crystal clear again.",
+                danger: true
+            },
+            clear_dying: {
+                q: "What is the recent temperature history and water source?",
+                opts: [
+                    { text: "Temperature has been above 25°C (77°F).", next: "heat" },
+                    { text: "I just did a water change using straight tap water.", next: "chlorine" },
+                    { text: "Temperature is fine, water is primed. They are just vanishing.", next: "starvation" }
+                ]
+            },
+            pink: {
+                res: "SEVERE OXYGEN DEPLETION",
+                desc: "Daphnia produce hemoglobin (turning pink/red) when O2 levels are lethally low. This is usually caused by stagnant water or excessively warm temperatures.",
+                act: "Action: Add gentle aeration immediately. Move the container to a cooler location (18-20°C).",
+                danger: true
+            },
+            heat: {
+                res: "HEAT STRESS",
+                desc: "Temperatures over 24°C slow production, and over 28°C cause rapid die-offs due to oxygen starvation.",
+                act: "Action: Relocate the culture to a basement, lower shelf, or shaded area. Increase surface agitation slightly.",
+                danger: false
+            },
+            chlorine: {
+                res: "CHLORINE / CHLORAMINE TOXICITY",
+                desc: "Tap water contains disinfectants that disintegrate Daphnia instantly.",
+                act: "Action: The culture may be a total loss. Prime the water immediately. Check the bottom for ephippia (resting eggs) and wait to see if they hatch in a few weeks.",
+                danger: true
+            },
+            starvation: {
+                res: "STARVATION / WATER STAGNATION",
+                desc: "If the water is crystal clear and conditions are stable, the population has likely exhausted its food supply or trace minerals.",
+                act: "Action: Feed a slurry of spirulina or active yeast. If feeding doesn't help, ensure the container isn't being contaminated by household aerosols or pesticides.",
+                danger: false
+            }
+        };
+
+        const treeContainer = document.getElementById('tree-container');
+
+        function renderTree(nodeId) {
+            treeContainer.innerHTML = '';
+            const node = treeData[nodeId];
+
+            if (node.q) {
+                const heading = document.createElement('div');
+                heading.className = 'tree-question';
+                heading.innerText = node.q;
+                treeContainer.appendChild(heading);
+
+                node.opts.forEach(opt => {
+                    const btn = document.createElement('button');
+                    btn.className = 'tree-btn';
+                    btn.innerText = opt.text;
+                    btn.onclick = () => renderTree(opt.next);
+                    treeContainer.appendChild(btn);
+                });
+
+                if (nodeId !== 'start') {
+                    const reset = document.createElement('button');
+                    reset.className = 'tree-btn';
+                    reset.style.marginTop = '15px';
+                    reset.style.background = 'transparent';
+                    reset.style.borderColor = 'transparent';
+                    reset.style.color = 'var(--accent-color)';
+                    reset.innerText = "← Start Over";
+                    reset.onclick = () => renderTree('start');
+                    treeContainer.appendChild(reset);
+                }
+            } else if (node.res) {
+                const resDiv = document.createElement('div');
+                resDiv.className = `tree-result ${node.danger ? 'danger' : ''}`;
+                resDiv.innerHTML = `
                 <h3 style="margin-top: 0; color: ${node.danger ? 'var(--danger)' : 'var(--accent-color)'}">${node.res}</h3>
                 <p><strong>Diagnosis:</strong> ${node.desc}</p>
                 <p style="font-weight: bold; margin-bottom: 20px;">${node.act}</p>
                 <button class="tree-btn" style="text-align: center;" onclick="renderTree('start')">Restart Diagnostics</button>
             `;
-            treeContainer.appendChild(resDiv);
+                treeContainer.appendChild(resDiv);
+            }
         }
-    }
 
-    // Initialize Tree
-    renderTree('start');
+        // Initialize Tree
+        renderTree('start');
 
-</script>
+    </script>
 
 </body>
+
 </html>
