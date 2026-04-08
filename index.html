@@ -648,8 +648,9 @@
                         </li>
                         <li class="expert-only"><strong>Dissolved Oxygen (DO):</strong> Maintain > 3.5 mg/L via gentle
                             rolling aeration.</li>
-                        <li class="expert-only"><strong>Hardness (GH/KH):</strong> 90 – 180 mg/L CaCO3. Use crushed
-                            coral in your tanks if your tap water is exceptionally soft (TDS < 100).</li>
+                        <li class="expert-only"><strong>Hardness (GH/KH):</strong> 90 – 180 mg/L CaCO3. If your tap
+                            water is exceptionally soft (TDS < 100), you must remineralize it. Highly recommended: <em>
+                                SaltyShrimp GH/KH+</em> or a small handful of crushed coral.</li>
                     </ul>
 
                     <div class="expert-only expert-callout">
@@ -714,10 +715,13 @@
                         <p>If you feed your Daphnia exclusively yeast, you are feeding your fish nutrient-deficient
                             water bags. <strong>You must treat the Daphnia as a delivery vehicle.</strong></p>
                         <p><strong>The Strategy:</strong> 3 to 9 hours before harvesting Daphnia to feed to your fish,
-                            dose the tank (or an isolation container) heavily with an aquaculture enrichment emulsion
-                            (e.g., Selcon, fish oils, or a concentrated spirulina/astaxanthin slurry). The Daphnia will
-                            filter-feed the lipids into their gut tracts. When harvested and fed to your aquarium, the
-                            fish ingest the bio-encapsulated HUFAs directly.</p>
+                            dose the tank (or an isolation container) heavily with an aquaculture enrichment emulsion.
+                            <strong>Highly recommended brands include:</strong> <em>Boyd Enterprises Vita-Chem</em> or
+                            <em>American Marine Selcon</em>. The Daphnia will filter-feed the lipids into their gut
+                            tracts.
+                            When harvested and fed to your aquarium, the fish ingest the bio-encapsulated HUFAs
+                            directly.
+                        </p>
                     </div>
                 </div>
             </section>
@@ -742,8 +746,10 @@
                             outcompeting the algae.</li>
                         <li><strong>The Water:</strong> Fill with clean, dechlorinated freshwater. Do <em>not</em> use
                             water from your fish tank (it contains zooplankton that will eat the algae).</li>
-                        <li><strong>The Fertilizer:</strong> Purchase <strong>Guillard's F/2 Fertilizer</strong> (widely
-                            available online). Dose exactly according to the bottle (typically ~1mL per liter). Do not
+                        <li><strong>The Fertilizer:</strong> Purchase <strong>Guillard's F/2 Fertilizer</strong> (Highly
+                            recommended: <em>Mercer of Montana F/2</em> or <em>Florida Aqua Farms Micro Algae
+                                Grow</em>).
+                            Dose exactly according to the bottle (typically ~1mL per liter). Do not
                             over-fertilize; it will stall the culture.</li>
                         <li><strong>The Seed:</strong> Purchase a pure live freshwater phytoplankton starter culture, or
                             use water from an existing green aquarium. Add 1 part starter to 10 parts fresh water.</li>
@@ -807,10 +813,12 @@
                     <div class="calc-wrapper">
                         <div class="calc-input-group">
                             <label><strong>Main Culture Volume:</strong></label>
-                            <input type="number" id="calc-vol" value="20" min="1" step="1">
-                            <span style="font-weight:bold; color:var(--text-secondary);">Liters</span>
-                            <span style="font-size: 0.85rem; color: #64748b; margin-left: 10px;"
-                                id="gal-conversion">(~5.3 Gallons)</span>
+                            <input type="number" id="calc-vol" value="20" min="0.5" step="0.5">
+                            <select id="unit-toggle"
+                                style="background:var(--bg-color); color:white; border:1px solid #334155; padding:12px; border-radius:8px; font-size:1.1rem; cursor:pointer;">
+                                <option value="L">Liters</option>
+                                <option value="G">Gallons (US)</option>
+                            </select>
                         </div>
 
                         <div class="metrics-grid">
