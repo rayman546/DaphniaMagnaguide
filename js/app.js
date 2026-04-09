@@ -19,6 +19,49 @@ function calculateMetrics(v, unit) {
     };
 }
 
+function saveSettings(volume, unit) {
+    if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('daphnia_vol', volume);
+        localStorage.setItem('daphnia_unit', unit);
+    }
+}
+
+function loadSettings() {
+    if (typeof localStorage === 'undefined') return null;
+    const vol = localStorage.getItem('daphnia_vol');
+    const unit = localStorage.getItem('daphnia_unit');
+    if (vol && unit) {
+        return { volume: parseFloat(vol), unit: unit };
+    }
+    return null;
+}
+
+function generateSchedule(startDate, volume, unit) {
+    const schedule = [];
+    const metrics = calculateMetrics(volume, unit);
+    
+    for (let i = 0; i < 14; i++) {
+        const currentDate = new Date(startDate);
+        currentDate.setDate(currentDate.getDate() + i);
+        
+        let actions = [];
+        actions.push('Feed lightly (Water clear)');
+        
+        if ((i + 1) % 4 === 0) {
+            actions.push(`Harvest ~${metrics ? metrics.harvest.toLocaleString() : '25%'} Daphnia`);
+        }
+        if ((i + 1) % 7 === 0) {
+            actions.push(`Water Change ~${metrics ? (unit==='G'? (metrics.exchangeLiters/3.78541).toFixed(1) + ' Gal' : metrics.exchangeLiters.toFixed(1) + ' L') : '20%'}`);
+        }
+        
+        schedule.push({
+            date: currentDate,
+            action: actions.join(', ')
+        });
+    }
+    return schedule;
+}
+
 const treeData = {
     start: {
         q: "What is the physical appearance of the problem?",
@@ -136,6 +179,7 @@ if (typeof window !== 'undefined') {
 
             const metrics = calculateMetrics(v, unit);
             if (!metrics) return;
+            saveSettings(v, unit);
 
             mDensity.innerText = metrics.density.toLocaleString();
             mHarvest.innerText = metrics.harvest.toLocaleString();
@@ -147,6 +191,12 @@ if (typeof window !== 'undefined') {
         }
 
         if (calcVol) {
+            const saved = loadSettings();
+            if (saved) {
+                calcVol.value = saved.volume;
+                unitToggle.value = saved.unit;
+            }
+            
             calcVol.addEventListener('input', updateCalc);
             unitToggle.addEventListener('change', () => {
                 if (unitToggle.value === 'G' && calcVol.value === '20') calcVol.value = '5';
@@ -201,10 +251,54 @@ if (typeof window !== 'undefined') {
             }
         };
         window.drawTree('start');
+        // Scheduler
+        const btnSchedule = document.getElementById('btn-genschedule');
+        const calcDate = document.getElementById('calc-date');
+        const schedBody = document.getElementById('schedule-body');
+
+        if (btnSchedule && calcDate && schedBody) {
+            // default date to today
+            calcDate.value = new Date().toISOString().split('T')[0];
+
+            btnSchedule.addEventListener('click', () => {
+                if (!calcVol || !unitToggle) return;
+                const v = parseFloat(calcVol.value);
+                const unit = unitToggle.value;
+                const d = new Date(calcDate.value);
+                
+                if (isNaN(d.getTime())) return;
+
+                const sched = generateSchedule(d, v, unit);
+                schedBody.innerHTML = '';
+                
+                sched.forEach(s => {
+                    const tr = document.createElement('tr');
+                    tr.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+                    
+                    const tdDate = document.createElement('td');
+                    tdDate.style.padding = '12px 15px';
+                    tdDate.innerText = s.date.toLocaleDateString();
+                    
+                    const tdAction = document.createElement('td');
+                    tdAction.style.padding = '12px 15px';
+                    
+                    // Highlight important actions
+                    let actionHtml = s.action;
+                    if (actionHtml.includes('Harvest')) actionHtml = actionHtml.replace('Harvest', '<strong style="color:var(--accent-secondary)">Harvest</strong>');
+                    if (actionHtml.includes('Water Change')) actionHtml = actionHtml.replace('Water Change', '<strong style="color:var(--danger)">Water Change</strong>');
+                    
+                    tdAction.innerHTML = actionHtml;
+                    
+                    tr.appendChild(tdDate);
+                    tr.appendChild(tdAction);
+                    schedBody.appendChild(tr);
+                });
+            });
+        }
     });
 }
 
 // Export for Node.js / Vitest
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { calculateMetrics, treeData };
+    module.exports = { calculateMetrics, treeData, saveSettings, loadSettings, generateSchedule };
 }

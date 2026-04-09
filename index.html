@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,16 +17,11 @@
             --expert-bg: rgba(192, 132, 252, 0.08);
             --danger: #ef4444;
             --success: #10b981;
+            --warning: #f59e0b;
             --border-radius: 12px;
             --border-color: rgba(255, 255, 255, 0.08);
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             background-color: var(--bg-color);
@@ -36,8 +30,6 @@
             display: flex;
             min-height: 100vh;
         }
-
-        /* Sidebar Navigation */
         .sidebar {
             width: 300px;
             background-color: var(--sidebar-bg);
@@ -48,1195 +40,1113 @@
             overflow-y: auto;
             z-index: 100;
         }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--accent-secondary);
-            margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(14, 165, 233, 0.3);
-        }
-
-        .subtitle {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            margin-bottom: 30px;
-            display: block;
-        }
-
-        /* Toggle Switch */
-        .toggle-container {
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid var(--border-color);
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .toggle-header {
-            font-weight: bold;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-
-        .toggle-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .toggle-label {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 44px;
-            height: 24px;
-        }
-
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #475569;
-            transition: .4s;
-            border-radius: 34px;
-        }
-
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-
-        input:checked+.slider {
-            background-color: var(--expert-color);
-        }
-
-        input:checked+.slider:before {
-            transform: translateX(20px);
-        }
-
-        /* Nav Buttons */
-        .nav-btn {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: transparent;
-            color: var(--text-secondary);
-            border: none;
-            padding: 12px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 0.2s;
-            margin-bottom: 5px;
-        }
-
-        .nav-btn:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-primary);
-        }
-
-        .nav-btn.active {
-            background: var(--accent-primary);
-            color: #fff;
-            box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
-        }
-
-        /* Main Content Area */
-        .content {
-            margin-left: 300px;
-            padding: 40px;
-            width: calc(100% - 300px);
-        }
-
-        .content-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .section {
-            display: none;
-            animation: fadeIn 0.4s ease;
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: var(--border-radius);
-            padding: 30px;
-            margin-bottom: 25px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        h2 {
-            color: var(--accent-secondary);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 10px;
-        }
-
-        h3 {
-            color: #f1f5f9;
-            font-size: 1.3rem;
-            margin: 25px 0 10px;
-        }
-
-        p {
-            margin-bottom: 15px;
-            font-size: 1.05rem;
-        }
-
-        ul {
-            margin-left: 20px;
-            margin-bottom: 15px;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        strong {
-            color: #f8fafc;
-        }
-
-        .img-container {
-            margin: 25px 0;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .img-container img {
-            width: 100%;
-            max-height: 400px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .img-caption {
-            text-align: center;
-            padding: 10px;
-            background: rgba(0, 0, 0, 0.4);
-            font-size: 0.85rem;
-            color: #94a3b8;
-        }
-
-        /* Expert Mode Logic & Classes */
-        .expert-only {
-            display: none;
-        }
-
-        body.expert-mode .expert-only {
-            display: block;
-        }
-
-        body.expert-mode span.expert-only {
-            display: inline;
-        }
-
-        body.expert-mode li.expert-only {
-            display: list-item;
-        }
-
-        body.expert-mode .beginner-only {
-            display: none;
-        }
-
-        .expert-badge {
-            background: var(--expert-bg);
-            color: var(--expert-color);
-            padding: 3px 10px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            font-weight: 800;
-            margin-right: 10px;
-            border: 1px solid rgba(192, 132, 252, 0.4);
-            vertical-align: middle;
-        }
-
-        .expert-callout {
-            border-left: 4px solid var(--expert-color);
-            background: var(--expert-bg);
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 0 var(--border-radius) var(--border-radius) 0;
-        }
-
-        .expert-callout h4 {
-            color: var(--expert-color);
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .pro-tip {
-            border-left: 4px solid var(--success);
-            background: rgba(16, 185, 129, 0.05);
-            padding: 15px;
-            margin: 15px 0;
-            border-radius: 0 8px 8px 0;
-            font-size: 0.95rem;
-        }
-
-        /* Calculator Styles */
-        .calc-wrapper {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-        }
-
-        .calc-input-group {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        input[type="number"] {
-            background: var(--bg-color);
-            border: 1px solid #334155;
-            color: white;
-            padding: 12px 20px;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            width: 140px;
-        }
-
-        input[type="number"]:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
-        }
-
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 15px;
-        }
-
-        .metric-box {
-            background: var(--sidebar-bg);
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .metric-val {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--accent-secondary);
-            margin: 5px 0;
-        }
-
-        .expert-metric {
-            border-color: rgba(192, 132, 252, 0.3);
-        }
-
-        .expert-metric .metric-val {
-            color: var(--expert-color);
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            position: fixed;
-            top: 15px;
-            right: 15px;
-            z-index: 200;
-            background: var(--accent-primary);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--accent-secondary); margin-bottom: 5px; text-shadow: 0 0 10px rgba(14,165,233,0.3); }
+        .subtitle { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 30px; display: block; }
+        .toggle-container { background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); padding: 15px; border-radius: 12px; margin-bottom: 30px; display: flex; flex-direction: column; gap: 10px; }
+        .toggle-header { font-weight: bold; font-size: 0.9rem; text-align: center; }
+        .toggle-row { display: flex; align-items: center; justify-content: space-between; }
+        .toggle-label { font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); }
+        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #475569; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 16px; width: 16px; left: 4px; bottom: 4px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked+.slider { background-color: var(--expert-color); }
+        input:checked+.slider:before { transform: translateX(20px); }
+        .nav-btn { display: block; width: 100%; text-align: left; background: transparent; color: var(--text-secondary); border: none; padding: 12px 15px; border-radius: 8px; cursor: pointer; font-size: 0.95rem; font-weight: 500; transition: all 0.2s; margin-bottom: 5px; }
+        .nav-btn:hover { background: rgba(255,255,255,0.05); color: var(--text-primary); }
+        .nav-btn.active { background: var(--accent-primary); color: #fff; box-shadow: 0 0 12px rgba(14,165,233,0.4); }
+        .content { margin-left: 300px; padding: 40px; width: calc(100% - 300px); }
+        .content-container { max-width: 900px; margin: 0 auto; }
+        .section { display: none; animation: fadeIn 0.4s ease; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .card { background: var(--card-bg); border-radius: var(--border-radius); padding: 30px; margin-bottom: 25px; border: 1px solid var(--border-color); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        h2 { color: var(--accent-secondary); font-size: 1.8rem; margin-bottom: 20px; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; }
+        h3 { color: #f1f5f9; font-size: 1.3rem; margin: 25px 0 10px; }
+        h4 { color: #cbd5e1; font-size: 1.1rem; margin: 20px 0 8px; }
+        p { margin-bottom: 15px; font-size: 1.05rem; }
+        ul { margin-left: 20px; margin-bottom: 15px; }
+        li { margin-bottom: 8px; }
+        strong { color: #f8fafc; }
+        .img-container { margin: 25px 0; border-radius: 12px; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .img-container img { width: 100%; max-height: 400px; object-fit: cover; display: block; }
+        .img-caption { text-align: center; padding: 10px; background: rgba(0,0,0,0.4); font-size: 0.85rem; color: #94a3b8; }
+        /* Expert Mode */
+        .expert-only { display: none; }
+        body.expert-mode .expert-only { display: block; }
+        body.expert-mode span.expert-only { display: inline; }
+        body.expert-mode li.expert-only { display: list-item; }
+        body.expert-mode .beginner-only { display: none; }
+        .expert-badge { background: var(--expert-bg); color: var(--expert-color); padding: 3px 10px; border-radius: 6px; font-size: 0.75rem; text-transform: uppercase; font-weight: 800; margin-right: 10px; border: 1px solid rgba(192,132,252,0.4); vertical-align: middle; }
+        .expert-callout { border-left: 4px solid var(--expert-color); background: var(--expert-bg); padding: 20px; margin: 20px 0; border-radius: 0 var(--border-radius) var(--border-radius) 0; }
+        .expert-callout h4 { color: var(--expert-color); margin-bottom: 10px; font-size: 1.1rem; }
+        .pro-tip { border-left: 4px solid var(--success); background: rgba(16,185,129,0.05); padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; font-size: 0.95rem; }
+        .warning-box { border-left: 4px solid var(--danger); background: rgba(239,68,68,0.07); padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; font-size: 0.95rem; }
+        .info-box { border-left: 4px solid var(--warning); background: rgba(245,158,11,0.07); padding: 15px; margin: 15px 0; border-radius: 0 8px 8px 0; font-size: 0.95rem; }
+        /* Tables */
+        .data-table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 0.95rem; }
+        .data-table th { background: rgba(14,165,233,0.15); color: var(--accent-secondary); padding: 12px 15px; text-align: left; font-weight: 700; border-bottom: 2px solid rgba(14,165,233,0.3); }
+        .data-table td { padding: 10px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: top; }
+        .data-table tr:hover td { background: rgba(255,255,255,0.03); }
+        .data-table .danger-row td { color: var(--danger); }
+        .data-table .good-row td { color: var(--success); }
+        .data-table .warn-row td { color: var(--warning); }
+        /* Setup Size Tabs */
+        .size-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+        .size-tab { background: var(--sidebar-bg); border: 1px solid var(--border-color); color: var(--text-secondary); padding: 8px 18px; border-radius: 20px; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: all 0.2s; }
+        .size-tab.active { background: var(--accent-primary); color: white; border-color: var(--accent-primary); }
+        .size-panel { display: none; }
+        .size-panel.active { display: block; }
+        /* Species cards */
+        .species-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 15px; margin: 20px 0; }
+        .species-card { background: var(--sidebar-bg); border: 1px solid var(--border-color); border-radius: 10px; padding: 18px; }
+        .species-card h4 { color: var(--accent-secondary); margin: 0 0 8px; font-size: 1rem; }
+        .species-card .amount { font-size: 1.5rem; font-weight: 800; color: var(--success); }
+        .species-card .detail { font-size: 0.85rem; color: var(--text-secondary); margin-top: 5px; }
+        /* Calculator */
+        .calc-wrapper { display: flex; flex-direction: column; gap: 20px; background: rgba(0,0,0,0.2); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); }
+        .calc-input-group { display: flex; align-items: center; gap: 15px; flex-wrap: wrap; }
+        input[type="number"] { background: var(--bg-color); border: 1px solid #334155; color: white; padding: 12px 20px; border-radius: 8px; font-size: 1.1rem; width: 140px; }
+        input[type="number"]:focus { outline: none; border-color: var(--accent-primary); box-shadow: 0 0 0 3px rgba(14,165,233,0.2); }
+        select { background: var(--bg-color); border: 1px solid #334155; color: white; padding: 12px 20px; border-radius: 8px; font-size: 1rem; }
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; }
+        .metric-box { background: var(--sidebar-bg); padding: 20px; border-radius: 12px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+        .metric-val { font-size: 2rem; font-weight: 800; color: var(--accent-secondary); margin: 5px 0; }
+        .metric-label { font-size: 0.85rem; color: var(--text-secondary); font-weight: 600; }
+        .metric-sub { font-size: 0.75rem; color: #64748b; margin-top: 4px; }
+        .expert-metric { border-color: rgba(192,132,252,0.3); }
+        .expert-metric .metric-val { color: var(--expert-color); }
+        .btn-primary { background: var(--accent-primary); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: 700; font-size: 1rem; transition: all 0.2s; }
+        .btn-primary:hover { background: var(--accent-secondary); transform: translateY(-1px); }
         /* Diagnostic Tree */
-        #diagnostic-tree {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 25px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
-            min-height: 250px;
-        }
-
-        .tree-q {
-            font-size: 1.3rem;
-            margin-bottom: 25px;
-            color: #fff;
-            font-weight: 600;
-        }
-
-        .tree-btn {
-            display: block;
-            width: 100%;
-            text-align: left;
-            background: var(--sidebar-bg);
-            color: var(--text-primary);
-            border: 1px solid #334155;
-            padding: 18px 20px;
-            margin-bottom: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s;
-            font-size: 1.05rem;
-        }
-
-        .tree-btn:hover {
-            background: #1e293b;
-            border-color: var(--accent-primary);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            transform: translateY(-1px);
-        }
-
-        .tree-res {
-            padding: 25px;
-            border-left: 5px solid var(--accent-secondary);
-            background: rgba(14, 165, 233, 0.05);
-            border-radius: 0 12px 12px 0;
-        }
-
-        .tree-res.danger {
-            border-left-color: var(--danger);
-            background: rgba(239, 68, 68, 0.05);
-        }
-
-        .tree-res h3 {
-            margin-top: 0;
-            color: var(--accent-primary);
-        }
-
-        .tree-res.danger h3 {
-            color: var(--danger);
-        }
-
+        #diagnostic-tree { background: rgba(0,0,0,0.2); padding: 25px; border-radius: 12px; border: 1px solid var(--border-color); min-height: 250px; }
+        .tree-q { font-size: 1.3rem; margin-bottom: 25px; color: #fff; font-weight: 600; }
+        .tree-btn { display: block; width: 100%; text-align: left; background: var(--sidebar-bg); color: var(--text-primary); border: 1px solid #334155; padding: 18px 20px; margin-bottom: 12px; border-radius: 8px; cursor: pointer; transition: 0.2s; font-size: 1.05rem; }
+        .tree-btn:hover { background: #1e293b; border-color: var(--accent-primary); box-shadow: 0 4px 12px rgba(0,0,0,0.2); transform: translateY(-1px); }
+        .tree-res { padding: 25px; border-left: 5px solid var(--accent-secondary); background: rgba(14,165,233,0.05); border-radius: 0 12px 12px 0; }
+        .tree-res.danger { border-left-color: var(--danger); background: rgba(239,68,68,0.05); }
+        .tree-res h3 { margin-top: 0; color: var(--accent-primary); }
+        .tree-res.danger h3 { color: var(--danger); }
+        /* Schedule Table */
+        #schedule-container { overflow-x: auto; }
+        #schedule-container table { width: 100%; border-collapse: collapse; }
+        #schedule-container th { background: rgba(14,165,233,0.15); color: var(--accent-secondary); padding: 10px 15px; text-align: left; }
+        #schedule-container td { padding: 10px 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        /* Mobile */
+        .mobile-menu-btn { display: none; position: fixed; top: 15px; right: 15px; z-index: 200; background: var(--accent-primary); color: white; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer; }
         @media (max-width: 900px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .sidebar.open {
-                transform: translateX(0);
-            }
-
-            .content {
-                margin-left: 0;
-                width: 100%;
-                padding: 20px;
-                padding-top: 70px;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s ease; }
+            .sidebar.open { transform: translateX(0); }
+            .content { margin-left: 0; width: 100%; padding: 20px; padding-top: 70px; }
+            .mobile-menu-btn { display: block; }
+            .species-grid { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
-
 <body>
+<button class="mobile-menu-btn" onclick="toggleMobileMenu()">&#9776; Menu</button>
 
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()">MENU</button>
+<nav class="sidebar" id="sidebar">
+    <div class="logo">&#x1F9AB; Daphnia Magna</div>
+    <span class="subtitle">The Definitive Culturing Guide</span>
 
-    <aside class="sidebar" id="sidebar">
-        <div class="logo">DAPHNIA MAGNA</div>
-        <span class="subtitle">The Definitive Culturing Guide</span>
+    <div class="toggle-container">
+        <div class="toggle-header">&#x1F4A1; Experience Level</div>
+        <div class="toggle-row">
+            <span class="toggle-label" id="mode-text">Beginner Mode</span>
+            <label class="switch">
+                <input type="checkbox" id="modeToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div style="font-size:0.75rem; color:#64748b; text-align:center;">Toggle for advanced science &amp; data</div>
+    </div>
 
-        <div class="toggle-container">
-            <div class="toggle-header" id="mode-text">Beginner Mode</div>
-            <div class="toggle-row">
-                <span class="toggle-label">Simple & Safe</span>
-                <label class="switch">
-                    <input type="checkbox" id="modeToggle">
-                    <span class="slider"></span>
-                </label>
-                <span class="toggle-label" style="color: var(--expert-color);">Deep & Technical</span>
+    <button class="nav-btn active" data-target="biology">1. Biology &amp; Life Cycle</button>
+    <button class="nav-btn" data-target="containers">2. Containers &amp; Setup</button>
+    <button class="nav-btn" data-target="chemistry">3. Water Chemistry</button>
+    <button class="nav-btn" data-target="nutrition">4. Feeding &amp; Nutrition</button>
+    <button class="nav-btn" data-target="greenwater">5. Green Water Culture</button>
+    <button class="nav-btn" data-target="harvest">6. Harvesting</button>
+    <button class="nav-btn" data-target="calculator">7. Deep Calculator</button>
+    <button class="nav-btn" data-target="troubleshooting">8. Diagnostic Tree</button>
+</nav>
+
+<main class="content">
+<div class="content-container">
+<!-- ===== SECTION 1: BIOLOGY ===== -->
+<section id="biology" class="section active">
+    <div class="card">
+        <h2>Biology &amp; Life Cycle</h2>
+        <p>Understanding <em>how</em> Daphnia replicate and survive is the single most important factor in running a stable culture. They are not aquarium fish — they are zooplankton engineered by evolution to exploit temporary puddles and ponds, boom explosively, then vanish into resting eggs. Managing a culture means understanding and working with these instincts.</p>
+
+        <div class="img-container">
+            <img src="daphnia_macro.png" alt="High detail macro photography of Daphnia Magna">
+            <div class="img-caption">Adult Daphnia magna under magnification — note the translucent carapace, single compound eye, and brood chamber containing developing embryos.</div>
+        </div>
+
+        <h3>What is Daphnia magna?</h3>
+        <p>Daphnia magna is a large freshwater crustacean (cladoceran) in the family Daphniidae. At 3–5 mm when fully grown, it is the largest commonly cultured Daphnia species. It is native to the Northern Hemisphere but has been distributed worldwide. In the aquarium hobby, it is prized as a live food that triggers natural hunting behavior, delivers exceptional nutrition, and conveniently doubles as a digestive aid for constipated fish.</p>
+
+        <h3>D. magna vs. Other Daphnia Species</h3>
+        <table class="data-table">
+            <thead><tr><th>Feature</th><th>D. magna</th><th>D. moina</th><th>D. pulex</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Adult Size</strong></td><td>3–5 mm (largest)</td><td>0.8–1.5 mm (small)</td><td>2–3 mm (medium)</td></tr>
+                <tr><td><strong>Best For</strong></td><td>Medium fish, adult bettas, discus, angelfish</td><td>Fry, nano fish, baby bettas</td><td>General use</td></tr>
+                <tr><td><strong>Brood Interval (20°C)</strong></td><td>Every 3–4 days</td><td>Every 1.5–2 days</td><td>Every 3–5 days</td></tr>
+                <tr><td><strong>Max Culture Density</strong></td><td>~100–150/gallon before crash</td><td>Up to 19,000/gallon</td><td>Variable, lower than moina</td></tr>
+                <tr><td><strong>Culture Difficulty</strong></td><td>Moderate</td><td>Easy</td><td>Moderate</td></tr>
+                <tr><td><strong>Protein (dry weight)</strong></td><td>45–50%</td><td>50%+</td><td>~45%</td></tr>
+            </tbody>
+        </table>
+        <div class="pro-tip">💡 <strong>Which to choose?</strong> D. magna is best for adult fish (bettas, cichlids, angelfish). D. moina is superior for fry and nano fish — it is 600× more productive per gallon and small enough for most newborn fish to swallow. Consider running both if you breed fish.</div>
+
+        <h3>Physical Characteristics</h3>
+        <p>The body is enclosed in a transparent chitinous carapace (shell). A single large compound eye is visible as a dark spot. Females carry developing eggs in a brood chamber (marsupium) on their back — when gravid, you can see a cluster of eggs or juveniles inside. Males are significantly smaller (~2 mm) and appear only when the culture is stressed.</p>
+        <ul>
+            <li><strong>Neonates (just released):</strong> ~0.5 mm — too small for most fish, ideal for very small fry</li>
+            <li><strong>Juveniles (days 2–7):</strong> 1–2 mm — suitable for small nano fish</li>
+            <li><strong>Adults (day 8+):</strong> 3–5 mm — suitable for bettas, discus, angelfish, medium cichlids</li>
+        </ul>
+
+        <h3>The Life Cycle: Asexual Reproduction (Normal)</h3>
+        <p>Under good conditions, Daphnia reproduce entirely asexually. Every individual is a female clone. She produces parthenogenetic (unfertilized) eggs that develop directly into more females without any males being involved. This is why populations can explode so rapidly — every single organism is a baby-making machine.</p>
+        <ol style="margin-left:20px; margin-bottom:15px;">
+            <li>Female produces a clutch of 10–100+ eggs into her brood pouch</li>
+            <li>Eggs develop for ~3 days inside the brood chamber</li>
+            <li>Miniature female clones are released directly into the water</li>
+            <li>Juveniles reach reproductive maturity in 5–10 days (temperature dependent)</li>
+            <li>The cycle repeats every 3–4 days at 20°C</li>
+        </ol>
+
+        <h3>Reproduction Rate by Temperature</h3>
+        <table class="data-table">
+            <thead><tr><th>Temperature</th><th>Days to Maturity</th><th>Brood Interval</th><th>Lifespan</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr class="warn-row"><td>10°C / 50°F</td><td>~21 days</td><td>Every 7–8 days</td><td>~120 days</td><td>Survival only; very slow</td></tr>
+                <tr><td>15°C / 59°F</td><td>~14 days</td><td>Every 5–6 days</td><td>~95 days</td><td>Slow but stable</td></tr>
+                <tr class="good-row"><td>18–22°C / 64–72°F</td><td>7–10 days</td><td>Every 3–4 days</td><td>70–80 days</td><td>✅ OPTIMAL RANGE</td></tr>
+                <tr><td>25°C / 77°F</td><td>5–7 days</td><td>Every 2–3 days</td><td>~40 days</td><td>Fast but shorter lives</td></tr>
+                <tr class="warn-row"><td>28°C / 82°F</td><td>Variable</td><td>1–2 days</td><td>~30 days</td><td>Stress zone; watch closely</td></tr>
+                <tr class="danger-row"><td>29°C+ / 84°F+</td><td>N/A</td><td>N/A</td><td>&lt;5 days</td><td>⚠️ LETHAL — all die within 5 days</td></tr>
+            </tbody>
+        </table>
+
+        <h3>The Life Cycle: Sexual Reproduction &amp; Resting Eggs (Stress Response)</h3>
+        <p>When conditions deteriorate, Daphnia shift to sexual reproduction. Males suddenly appear in the population. Females produce fertilized eggs that are encased in a hardened saddle-shaped shell called an <strong>ephippium</strong>. Each ephippium contains 2 resting eggs that can survive years of freezing, drying, and dormancy.</p>
+
+        <div class="warning-box">
+            ⚠️ <strong>Males in your culture = a serious warning sign.</strong> If you see smaller, more streamlined individuals appearing alongside the females, your culture is stressed. The most common triggers are: overcrowding, food scarcity, temperature extremes, or poor water quality. Act immediately.
+        </div>
+
+        <p><strong>Ephippia triggers (in order of importance):</strong></p>
+        <ul>
+            <li>Overcrowding — the #1 trigger in captive cultures</li>
+            <li>Food scarcity (starvation)</li>
+            <li>Temperature extremes (too hot or too cold)</li>
+            <li>Shortened photoperiod (fewer hours of light)</li>
+            <li>Low dissolved oxygen</li>
+            <li>Poor water quality accumulation</li>
+        </ul>
+
+        <div class="pro-tip">💡 <strong>Ephippia are not all bad.</strong> Collect and dry them as an emergency backup. They can be stored for months or even years and rehydrated to restart a culture if everything crashes. Store in a sealed container with a bit of dry substrate.</div>
+
+        <div class="expert-only">
+            <div class="expert-callout">
+                <h4><span class="expert-badge">Expert</span> Population Dynamics &amp; Density Effects</h4>
+                <p>Wild Daphnia populations can vary by <strong>over 7 orders of magnitude</strong> within a single growing season — from billions at peak to near-zero in autumn. This extreme boom-bust pattern is what you are fighting against in a culture.</p>
+                <p>Density-dependent inhibition begins to suppress egg production in D. magna at densities as low as <strong>95–115 mature individuals per gallon</strong> — even when food is abundant. Chemical signals released by the daphnia themselves (crowding pheromones) trigger this suppression. This is why regular harvesting is not just about taking food for fish — it is the primary mechanism preventing a culture crash.</p>
+                <p>Contrast this with D. moina, which can sustain densities of 19,000/gallon before showing severe inhibition. This 600× difference in carrying capacity is why D. moina is vastly more productive per unit volume, though D. magna produces larger organisms more suitable for adult fish.</p>
+                <p><strong>Practical implication:</strong> For D. magna, keep populations below ~80–100 individuals per gallon. Harvest regularly. Run water changes to dilute chemical crowding signals even when the water looks clean.</p>
             </div>
-            <p style="font-size: 0.75rem; color: #64748b; text-align: center; margin-top: 5px;" class="expert-only">You
-                are viewing expert methodologies, biochemical parameters, and advanced techniques.</p>
         </div>
 
-        <nav>
-            <button class="nav-btn active" data-target="biology">1. Biology & Life Cycle</button>
-            <button class="nav-btn" data-target="containers">2. Containers & Setup</button>
-            <button class="nav-btn" data-target="chemistry">3. Water Chemistry</button>
-            <button class="nav-btn" data-target="nutrition">4. Feeding & Nutrition</button>
-            <button class="nav-btn" data-target="greenwater">5. Green Water Culture</button>
-            <button class="nav-btn" data-target="harvest">6. Harvesting</button>
-            <button class="nav-btn" data-target="calculator">7. Deep Calculator</button>
-            <button class="nav-btn" data-target="troubleshooting">8. Diagnostic Tree</button>
-        </nav>
-    </aside>
+        <h3>Nutritional Profile as Fish Food</h3>
+        <table class="data-table">
+            <thead><tr><th>Nutrient</th><th>Amount (dry weight)</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr><td>Protein</td><td>45–70%</td><td>Complete amino acid profile; excellent for fish conditioning</td></tr>
+                <tr><td>Fat (Lipids)</td><td>11–27%</td><td>Includes essential omega-3 and omega-6 fatty acids</td></tr>
+                <tr><td>Ash (Minerals)</td><td>15–20%</td><td>Calcium, phosphorus, iron, zinc</td></tr>
+                <tr><td>Chitin (fiber)</td><td>Part of exoskeleton</td><td>Acts as digestive roughage — the "fish laxative" effect</td></tr>
+                <tr><td>Carotenoids</td><td>Varies with diet</td><td>Enhanced by algae-based feeding; improves fish coloration</td></tr>
+            </tbody>
+        </table>
+        <p>Live Daphnia trigger the predatory feeding response in fish far more effectively than frozen or dried alternatives. Even picky fish that ignore flakes will eagerly chase live Daphnia. The combination of movement, live nutritional enzymes, and the chitinous exoskeleton makes it one of the most complete live foods available for freshwater fish.</p>
 
-    <main class="content">
-        <div class="content-container">
+        <h3>Critical Sensitivities at a Glance</h3>
+        <table class="data-table">
+            <thead><tr><th>Substance</th><th>Danger Level</th><th>LC50 / Threshold</th><th>Action Required</th></tr></thead>
+            <tbody>
+                <tr class="danger-row"><td>Chlorine / Chloramine</td><td>🔴 CRITICAL</td><td>0.018 mg/L (48-hr LC50)</td><td>Dechlorinate ALL tap water before use</td></tr>
+                <tr class="danger-row"><td>Copper</td><td>🔴 HIGH</td><td>&gt;40 µg/L causes death</td><td>No brass fittings, no algaecides, no copper medications</td></tr>
+                <tr class="warn-row"><td>Temperature &gt;29°C</td><td>🟡 LETHAL</td><td>29°C / 84°F = 5-day survival</td><td>Keep culture below 27°C at all times</td></tr>
+                <tr class="warn-row"><td>Pesticides</td><td>🟡 HIGH</td><td>Varies by compound</td><td>Keep cultures away from treated gardens and pesticide spray</td></tr>
+                <tr><td>Rapid hardness change</td><td>⚪ MODERATE</td><td>Sudden shift to 600 mg/L CaCO₃ = 98% mortality</td><td>Adjust water chemistry gradually, never suddenly</td></tr>
+                <tr><td>pH extremes</td><td>⚪ MODERATE</td><td>Below 5.5 or above 9.5</td><td>Maintain pH 6.5–8.5</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+<!-- ===== SECTION 2: CONTAINERS & SETUP ===== -->
+<section id="containers" class="section">
+    <div class="card">
+        <h2>Containers, Scaling &amp; Setup</h2>
+        <p>Daphnia can be raised in a mason jar on your windowsill or in a 300-gallon stock tank in a greenhouse. The principles are the same regardless of scale — but the equipment, yields, and maintenance demands change dramatically. Choose your scale based on how many fish you are feeding and how much time you can commit.</p>
 
-            <!-- 1. BIOLOGY -->
-            <section id="biology" class="section active">
-                <div class="card">
-                    <h2>Biology & Life Cycle</h2>
-                    <p>Understanding *how* Daphnia replicate and survive is critical to managing a stable, perpetual
-                        culture. You cannot treat them like normal aquarium fish; their life cycle is highly specialized
-                        to surviving transient puddle and pond environments.</p>
-
-                    <div class="img-container">
-                        <img src="daphnia_macro.png" alt="High detail macro photography of Daphnia Magna">
-                        <div class="img-caption">Daphnia magna structure highlighting the translucent carapace,
-                            antennae, and internal anatomy.</div>
-                    </div>
-
-                    <h3>Parthenogenesis (Cloning)</h3>
-                    <p>Under good conditions (plenty of food, good oxygen, stable temperatures), <strong>nearly all
-                            Daphnia in a culture are clones of a single female.</strong> The females reproduce asexually
-                        through <em>parthenogenesis</em>, bypassing the need for males. A healthy female will molt her
-                        exoskeleton, release a brood of fully formed live young from her brood chamber, and immediately
-                        begin developing the next clutch.</p>
-                    <p>This biological mechanism is why Daphnia cultures can explode in density in just a matter of days
-                        when heavily fed.</p>
-
-                    <div class="expert-only expert-callout">
-                        <h4><span class="expert-badge">Expert</span> Environmental Stress & Ephippia</h4>
-                        <p>When the colony is stressed (e.g., severe overcrowding, cold temperatures, sudden starvation,
-                            or toxins), the biological program flips. The females begin producing males. Following
-                            sexual reproduction, the females produce dark, saddle-shaped, thick-walled resting eggs
-                            called <strong>Ephippia</strong>.</p>
-                        <p>These ephippial cysts can survive freezing temperatures, drought, and digestion by birds. In
-                            aquaculture, spotting dark, granular specs floating or sinking in your tank is a definitive
-                            sign your culture is highly stressed and attempting to preserve its genetics before a total
-                            crash.</p>
-                    </div>
-
-                    <h3>The Molting Cycle</h3>
-                    energy and significant amounts of calcium and trace minerals from the water. <span
-                        class="expert-only">Soft water (low GH/KH) fundamentally breaks this molting process.
-                        Ecdysozoan shedding failures lead to immediate mortality, making mineral replenishment
-                        essential.</span></p>
-
-                    <h3>Procuring a Culture Without a Purchase</h3>
-                    <p>If you cannot purchase a pure laboratory or hobbyist starter culture, you have two natural
-                        procurement methods:</p>
-
-                    <div class="img-container" style="margin: 15px 0;">
-                        <img src="ephippia_eggs.png" alt="Dried Daphnia ephippia resting eggs in mud">
-                        <div class="img-caption">Daphnia ephippia (resting eggs) can survive years of drought and
-                            freezing, hatching when conditions improve.</div>
-                    </div>
-
-                    <ul>
-                        <li><strong>Wild Catching:</strong> During spring or fall, sweep a fine-mesh brine shrimp net
-                            through fishless, slow-moving ponds or ditches. Once caught, place the container in the dark
-                            and shine a flashlight on one corner—Daphnia are phototactic and will swarm the light. Use a
-                            pipette to suck out pure Daphnia. <strong style="color: var(--danger);">CRITICAL:</strong>
-                            Wild catches must be quarantined to prevent introducing hydra or predatory water beetles
-                            into your tanks.</li>
-                        <li><strong>Hatching Ephippia:</strong> You can purchase dormant, dry "resting eggs" (ephippia)
-                            online, or harvest them from dried mud surrounding vernal pools. Place the eggs in a shallow
-                            container of warm (20°C) dechlorinated water under bright light. They will hatch into
-                            neonates within a few days.</li>
-                    </ul>
-                </div>
-            </section>
-
-            <!-- 2. CONTAINERS -->
-            <section id="containers" class="section">
-                <div class="card">
-                    <h2>Containers, Scaling, & Setup</h2>
-                    <p>Daphnia can be cultured in tiny jars on a windowsill or massive stock tanks in a greenhouse. Your
-                        choice of container defines your harvest yield and maintenance overhead.</p>
-
-                    <div class="img-container">
-                        <img src="nano_culture_jar.png" alt="Nano culture jar illuminating a green tint">
-                        <div class="img-caption">A beautifully illuminated nano culture setup showing green tinted
-                            water.</div>
-                    </div>
-
-                    <h3>1. Nano Setups (≤ 1 Gallon / ~4 Liters)</h3>
-                    <p><strong>Ideal for:</strong> Extreme beginners, casual breeders feeding fry, or keeping pure
-                        backup starter cultures.</p>
-                    <p>Setup: A large wide-mouth mason jar, clear plastic pitcher, or small 1-gallon aquarium. Set in a
-                        windowsill receiving bright, indirect light to encourage microalgae growth. <strong>No aeration
-                            is required</strong> if the population density is kept strictly low.</p>
-                    <div class="pro-tip beginner-only">Nano jars are easy to set up but highly volatile. Because they
-                        hold so little water, slightly overfeeding them will crash the colony overnight.</div>
-
-                    <div class="expert-only expert-callout">
-                        <h4><span class="expert-badge">Expert</span> Nano Vulnerability</h4>
-                        <p>Thermal mass in 1-gallon systems is virtually nonexistent. A room temperature swing of 5°C
-                            will swing the water temperature just as fast, stressing the colony. Furthermore, the lack
-                            of mechanical aeration means you rely exclusively on surface-gas exchange.</p>
-                    </div>
-
-                    <h3>2. Medium Setups (5 - 10 Gallons / ~20-40 Liters)</h3>
-                    <p><strong>Ideal for:</strong> Hobbyist fish keepers feeding a few show tanks weekly.</p>
-                    <p>Setup: Plastic storage totes, Home Depot buckets, or standard 10-gallon glass aquariums. These
-                        provide the best balance of stability and footprint.</p>
-                    <ul>
-                        <li><strong>Aeration:</strong> Mandatory. Use a bare, rigid airline tube pushed to the bottom of
-                            the container. Adjust the air pump to a very slow "bloop... bloop..." (roughly 2-3 bubbles
-                            per second).</li>
-                        <li><strong>Lighting:</strong> A cheap LED clamp light or shop light set on a 12-hour timer.
-                        </li>
-                    </ul>
-
-                    <h3>3. Production Stock Tanks (50+ Gallons / 200+ Liters)</h3>
-                    <p><strong>Ideal for:</strong> Serious breeders, fishrooms, or commercial live-food harvesting.</p>
-                    <p>Setup: Black Rubbermaid Tuff Stuff agricultural tubs, IBC totes, or large garbage cans kept
-                        outdoors or in a heated garage. The massive water volume buffers against overfeeding, providing
-                        incredible resilience.</p>
-
-                    <br>
-
-                    <div class="expert-only expert-callout">
-                        <h4><span class="expert-badge">Expert</span> Advanced Culturing Mechanics</h4>
-                        <p><strong>Surface Area to Volume Ratio:</strong> Daphnia tanks should always be wide and
-                            shallow rather than narrow and deep. Maximize the gas exchange surface. Totes are superior
-                            to buckets for this exact reason.</p>
-                        <p><strong>Never Use Fine-Pore Airstones:</strong> Tiny micro-bubbles act like physical weapons
-                            against Daphnia. The micro-bubbles become trapped beneath their carapace, turning them into
-                            floating, helpless balls that eventually starve or rupture. Always use large, coarse bubbles
-                            via rigid open tubing.</p>
-
-                        <div class="img-container" style="margin: 15px 0;">
-                            <img src="rigid_airline_tubing.png" alt="Large spherical bubbles from rigid airline tubing">
-                            <div class="img-caption">Bare rigid airline tubing creates safe, large rolling bubbles
-                                instead of highly destructive micro-bubbles.</div>
-                        </div>
-
-                        <p><strong>Co-Culturing with Detritivores:</strong> Introduce non-predatory snails (Ramshorn or
-                            Bladder snails). They act as a living bio-filter, scouring the bottom of the tub to consume
-                            decaying spirulina/yeast before it rots and creates an ammonia spike. Without snails, the
-                            bottom glass will build up a toxic biofilm rapidly.</p>
-                    </div>
-
-                </div>
-            </section>
-
-            <!-- 3. CHEMISTRY -->
-            <section id="chemistry" class="section">
-                <div class="card">
-                    <h2>Granular Water Chemistry</h2>
-                    <p>Treating Daphnia water with the same precision as fish water is the secret to unlocking
-                        exponential cloning rates instead of stagnant, miserable populations.</p>
-
-                    <div class="img-container">
-                        <img src="water_chemistry_test.png" alt="Aquarium water chemistry test kits">
-                        <div class="img-caption">Frequent testing of water parameters ensures you catch toxic spikes
-                            before a total culture crash.</div>
-                    </div>
-
-                    <div
-                        style="background: rgba(0,0,0,0.2); padding: 20px; border-radius: 12px; margin: 25px 0; border: 1px solid var(--border-color);">
-                        <h4 style="margin-bottom: 15px; color: var(--accent-secondary); font-size: 1.1rem;">Optimal
-                            Parameter Ranges</h4>
-
-                        <div style="margin-bottom: 15px;">
-                            <div
-                                style="display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.85rem;">
-                                <span><strong>pH</strong> (7.0 - 8.5)</span>
-                                <span style="color:var(--text-secondary);">Alkaline Preference</span>
-                            </div>
-                            <div
-                                style="height: 8px; background: #334155; border-radius: 4px; overflow: hidden; display: flex;">
-                                <div style="width: 20%; background: var(--danger);"></div>
-                                <div style="width: 50%; background: var(--success);"></div>
-                                <div style="width: 30%; background: var(--danger);"></div>
-                            </div>
-                        </div>
-
-                        <div style="margin-bottom: 15px;">
-                            <div
-                                style="display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.85rem;">
-                                <span><strong>Temperature</strong> (18°C - 22°C)</span>
-                                <span style="color:var(--text-secondary);">Cool Room Temp</span>
-                            </div>
-                            <div
-                                style="height: 8px; background: #334155; border-radius: 4px; overflow: hidden; display: flex;">
-                                <div style="width: 30%; background: var(--danger);"></div>
-                                <div style="width: 30%; background: var(--success);"></div>
-                                <div style="width: 40%; background: var(--danger);"></div>
-                            </div>
-                        </div>
-
-                        <div>
-                            <div
-                                style="display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.85rem;">
-                                <span><strong>Ammonia</strong> (&lt;0.2ppm)</span>
-                                <span style="color:var(--danger);">Zero Tolerance</span>
-                            </div>
-                            <div
-                                style="height: 8px; background: #334155; border-radius: 4px; overflow: hidden; display: flex;">
-                                <div style="width: 10%; background: var(--success);"></div>
-                                <div style="width: 90%; background: var(--danger);"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <h3>Fundamental Parameters</h3>
-                    <ul>
-                        <li><strong>Temperature:</strong> 18°C – 22°C (64°F – 72°F) is optimal. Avoid direct harsh
-                            sunlight.</li>
-                        <li><strong>pH:</strong> 7.0 – 8.5. Daphnia thrive in alkaline water.</li>
-                        <li><strong>Water Source:</strong> Dechlorinated tap water or aged aquarium water.
-                            <strong>Chlorine and chloramine are instantly lethal.</strong>
-                        </li>
-                        <li class="expert-only"><strong>Dissolved Oxygen (DO):</strong> Maintain > 3.5 mg/L via gentle
-                            rolling aeration.</li>
-                        <li class="expert-only"><strong>Hardness (GH/KH):</strong> 90 – 180 mg/L CaCO3. If your tap
-                            water is exceptionally soft (TDS < 100), you must remineralize it. Highly recommended: <em>
-                                SaltyShrimp GH/KH+</em> or a small handful of crushed coral.</li>
-                    </ul>
-
-                    <div class="expert-only expert-callout">
-                        <h4><span class="expert-badge">Expert</span> The Silent Killers: Ammonia & Heat</h4>
-                        <p><strong>Ammonia Toxicity (LC50 ~2.94 mg/L):</strong> While they can survive short spikes,
-                            chronic exposure to >0.2 mg/L un-ionized ammonia severely stunts reproduction and causes
-                            mass late-stage die-offs. This is why overfeeding yeast (which rots instantly) destroys
-                            cultures. Snails help mitigate this by turning rotting food into solid, less harmful waste.
-                        </p>
-                        <br>
-                        <p><strong>Heat Stress & Hemoglobin:</strong> When temperatures rise above 25.5°C (78°F), water
-                            loses its ability to carry dissolved oxygen. In a desperate physiological response, Daphnia
-                            will produce hemoglobin, changing their normally translucent bodies to a deep, alarming
-                            pink/red. If your Daphnia turn pink, the culture is suffocating; you must immediately cool
-                            the water and increase aeration.</p>
-                    </div>
-
-                    <h3>Water Changes</h3>
-                    <p>Perform a 10% to 25% water change weekly. Siphon from the very bottom of the tank (using a piece
-                        of rigid airline connected to flexible tubing) to suck out mulm, dead husks, and snail waste.
-                        Replace with temperature-matched, dechlorinated water.</p>
-                </div>
-            </section>
-
-            <!-- 4. FEEDING -->
-            <section id="nutrition" class="section">
-                <div class="card">
-                    <h2>Feeding & Nutrition</h2>
-                    <p>Daphnia are blind filter-feeders that rely entirely on the water current to push microscopic food
-                        into their feeding appendages. <strong style="color: var(--danger);">The Golden Rule: Never,
-                            ever feed your culture if the water is still cloudy from yesterday.</strong> Wait until the
-                        water is completely clear.</p>
-
-                    <div class="img-container">
-                        <img src="spirulina_slurry.png" alt="Swirling spirulina slurry getting ready for feeding">
-                        <div class="img-caption">A dense spirulina slurry. Dry powders must be fully suspended in water
-                            before being introduced to the culture tank.</div>
-                    </div>
-
-                    <h3>What to Feed Them</h3>
-                    <ul>
-                        <li><strong>Green Water (Live Phytoplankton):</strong> The undisputed king of Daphnia food. It
-                            is alive, so it won't decay and crash your water quality, and it provides a perfectly
-                            balanced diet. (See the next tab for a culturing guide).</li>
-                        <li><strong>Spirulina Powder:</strong> An excellent, highly nutritious alternative. It must be
-                            vigorously shaken with water in a small jar to create a thick green "slurry" before dosing.
-                            Dry powder floats on the surface, rots, and is inaccessible to the Daphnia.</li>
-                        <li><strong>Active Dry Baker's Yeast:</strong> Very cheap and convenient. Yeast feeds the
-                            Daphnia both directly and indirectly (by sparking an edible bacteria bloom). However, it
-                            fouls water incredibly fast and lacks basic nutritional depth.</li>
-                    </ul>
-
-                    <div class="pro-tip beginner-only">The hardest part of raising Daphnia is resisting the urge to feed
-                        them. If you can clearly see the back wall of the container, feed them a few drops until it's
-                        slightly hazy. If you can't see the back wall, step away!</div>
-
-                    <div class="expert-only expert-callout">
-                        <h4><span class="expert-badge">Expert</span> HUFA Bio-Encapsulation (Gut-Loading)</h4>
-                        <p>Daphnia natively have extremely low essential lipid profiles—specifically lacking in EPA and
-                            DHA (Highly Unsaturated Fatty Acids, or HUFAs), which are critical for the neurological
-                            development and survivability of fish fry.</p>
-                        <p>If you feed your Daphnia exclusively yeast, you are feeding your fish nutrient-deficient
-                            water bags. <strong>You must treat the Daphnia as a delivery vehicle.</strong></p>
-
-                        <div class="img-container" style="margin: 15px 0;">
-                            <img src="daphnia_feeding_fry.png" alt="Tropical fish fry hunting live daphnia">
-                            <div class="img-caption">Properly gut-loaded Daphnia deliver massive bio-encapsulated
-                                nutrition directly to fast-growing fry.</div>
-                        </div>
-
-                        <p><strong>The Strategy:</strong> 3 to 9 hours before harvesting Daphnia to feed to your fish,
-                            dose the tank (or an isolation container) heavily with an aquaculture enrichment emulsion.
-                            <strong>Highly recommended brands include:</strong> <em>Boyd Enterprises Vita-Chem</em> or
-                            <em>American Marine Selcon</em>. The Daphnia will filter-feed the lipids into their gut
-                            tracts.
-                            When harvested and fed to your aquarium, the fish ingest the bio-encapsulated HUFAs
-                            directly.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 5. GREEN WATER -->
-            <section id="greenwater" class="section">
-                <div class="card">
-                    <h2>Culturing Green Water (Phytoplankton)</h2>
-                    <p>Raising your own live green water eliminates the risk of crashing your Daphnia tank via
-                        overfeeding. Freshwater algae species like <em>Chlorella</em> or <em>Scenedesmus</em> are the
-                        gold standard.</p>
-
-                    <div class="img-container">
-                        <img src="green_water_bottles.png" alt="Green water culturing in 2-liter bottles">
-                        <div class="img-caption">Intensely aerated 2-liter bottles cultivating dense phytoplankton under
-                            a bright LED grow light.</div>
-                    </div>
-
-                    <h3>The Setup</h3>
-                    <p>Use clean 1-gallon glass jars, clear 2-liter soda bottles, or 1-gallon clear pitchers. Drill a
-                        hole in the cap and insert a
-                        rigid airline tube all the way to the bottom. Hook it up to a strong air pump to keep the water
-                        violently bubbling.</p>
-
-                    <div class="img-container" style="margin: 15px 0;">
-                        <img src="green_water_jar.png" alt="1-gallon glass jar of glowing green water">
-                        <div class="img-caption">A dedicated 1-gallon glass jar setup vigorously bubbling a fresh
-                            "batch" of phytoplankton.</div>
-                    </div>
-
-                    <h3>Step-by-Step Batch Process</h3>
-                    <p><em>Note: It is highly recommended to treat green water as "disposable batches" (setup, use for
-                            10-15 days, and immediately reset with a new culture) rather than attempting to maintain a
-                            continuous, never-ending culture, which is highly prone to sudden crashes.</em></p>
-                    <ol>
-                        <li><strong>Sterilization:</strong> Clean your container with a very mild bleach solution
-                            (1:10), rinse thoroughly, and let perfectly air dry. Sterility prevents wild bacteria from
-                            outcompeting the algae.</li>
-                        <li><strong>The Water:</strong> Fill with clean, dechlorinated freshwater. Do <em>not</em> use
-                            water from your fish tank (it contains zooplankton that will eat the algae). Add a tiny
-                            pinch (1/16 tsp per gallon) of pure "culturing salts" or an alkalinity buffer to provide
-                            essential micronutrients—<strong>do not turn it into saltwater.</strong></li>
-                        <li><strong>The Fertilizer:</strong> Purchase <strong>Guillard's F/2 Fertilizer</strong> (Highly
-                            recommended: <em>Mercer of Montana F/2</em> or <em>Florida Aqua Farms Micro Algae
-                                Grow</em>).
-                            Dose exactly according to the bottle (typically ~1mL per liter). Do not
-                            over-fertilize; it will stall the culture.
-                            <br><br>
-                            <strong>DIY Fertilizer Alternatives:</strong> If you cannot source F/2, use a liquid aquatic
-                            plant fertilizer (e.g., <em>Aquarium Co-Op Easy Green</em>) at 1-2 drops per liter. Organic
-                            alternatives include adding a few drops of "sponge grunge" (squeezings from a healthy
-                            aquarium filter) or a single crushed flake of high-protein fish food to seed the nutrient
-                            cycle.
-                            <br><br>
-                            <span style="color: var(--danger);"><strong>CRITICAL WARNING:</strong></span> Never use
-                            terrestrial plant fertilizers like Miracle-Gro. They contain artificial chelating agents and
-                            heavy metals (especially copper) that are catastrophically toxic to invertebrates. Even
-                            trace amounts will wipe out your Daphnia colony when they eat the concentrated algae.
-                        </li>
-                        <li><strong>The Seed:</strong> Purchase a pure live freshwater phytoplankton starter culture, or
-                            use water from an existing green aquarium. Add 1 part starter to 10 parts fresh water.</li>
-                        <li><strong>The Environment:</strong> Run the intense bubbling 24/7. Place a strong 5000K-6500K
-                            daylight LED bulb <strong>12 to 20 inches away</strong> from the culture, running on a
-                            <strong>12 to 16 hours ON</strong> timer. The algae needs a dark phase for cellular
-                            respiration. (Alternatively, a bright, south-facing window with indirect or full sun can
-                            also work).
-                        </li>
-                    </ol>
-
-                    <h3>The "Wild" Method: No Starter Required</h3>
-                    <p>Instead of buying a pure laboratory starter culture, you can cultivate naturally occurring
-                        airborne or waterborne spores, though it takes patience and may yield mixed algae species.</p>
-                    <ol>
-                        <li>Fill a sterile jar with dechlorinated water and 1 drop of liquid plant fertilizer.</li>
-                        <li>Add a tiny scraping of green algae from an established aquarium glass, or simply leave the
-                            open jar outdoors in direct sunlight for a week to catch wild airborne spores.</li>
-                        <li>Once the water turns bright green, cover it to prevent mosquitoes, and use it as a starter
-                            for your main production bottle.</li>
-                    </ol>
-
-                    <div class="expert-only expert-callout">
-                        <h4><span class="expert-badge">Expert</span> Crash Mitigation & Splitting</h4>
-                        <p>After 7 to 10 days, the water will be dark, opaque emerald green. This is peak density. You
-                            must now harvest/split it.</p>
-                        <p>Pour 75% of it into your Daphnia tank (or the fridge for storage). Take the remaining 25% in
-                            the bottle, top it off with fresh water + new F/2 fertilizer, and let the 7-day cycle begin
-                            again. <strong>Always keep a 100mL backup in the refrigerator</strong>; green water crashes
-                            are sudden—the water will instantly turn yellow or pale brown as the cells lyse and die.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 6. HARVESTING -->
-            <section id="harvest" class="section">
-                <div class="card">
-                    <h2>Harvesting Your Culture</h2>
-                    <p>Harvesting is not just about feeding your fish—it is a critical maintenance step. If a population
-                        becomes too dense, reproductive growth completely halts, the aging Daphnia die off, and the
-                        culture stagnates.</p>
-
-                    <div class="img-container">
-                        <img src="daphnia_harvest_net.png" alt="Dense swarms of Daphnia being netted">
-                        <div class="img-caption">A fine-mesh net easily scooping massive swarms of live Daphnia drawn to
-                            a flashlight beam.</div>
-                    </div>
-
-                    <h3>The 25% Rule</h3>
-                    <p>To maximize continuous yield, harvest <strong>20% to 25% of the total visible population</strong>
-                        every 3 to 4 days. This reduces competition, drops the bioload, and triggers the remaining
-                        colony to rapidly produce massive clutches of clones.</p>
-
-                    <h3>Tools & Technique</h3>
-                    <ul>
-                        <li><strong>The Sieve Method:</strong> Siphon water out of your tank through a dedicated
-                            plankton sieve. This captures the Daphnia safely while accomplishing your weekly water
-                            change.
-
-                            <div class="img-container" style="margin: 15px 0;">
-                                <img src="harvesting_sieve.png"
-                                    alt="Fine-mesh sieve capturing glowing Daphnia under running water">
-                                <div class="img-caption">A dedicated plankton sieve makes harvesting massive quantities
-                                    of Daphnia rapid and safe.</div>
-                            </div>
-                        </li>
-                        <li><strong>The Net Method:</strong> Use a fine-mesh brine shrimp net. Shine a flashlight in one
-                            corner of the tank; Daphnia are phototactic (attracted to light) and will swarm the beam,
-                            allowing you to scoop dense clouds of them easily.</li>
-                    </ul>
-
-                    <h3>Long-Term Storage (Freezing)</h3>
-                    <p>You will inevitably produce more Daphnia than your fish can eat. Instead of letting them
-                        overcrowd and crash, harvest the excess and freeze them into custom fish-food cubes.</p>
-
-                    <div class="img-container">
-                        <img src="frozen_daphnia_cubes.png"
-                            alt="Hand dropping a frozen Daphnia cube into a planted aquarium">
-                        <div class="img-caption">Frozen Daphnia cubes act as a fantastic emergency stockpile for winter
-                            months or unexpected culture crashes.</div>
-                    </div>
-
-                    <ol>
-                        <li>Use the Sieve Method to harvest a massive dense clump of Daphnia.</li>
-                        <li>Transfer the live mass into standard silicone ice cube trays.</li>
-                        <li>Fill the remainder of the cube slots with either pure RO water, or ideally, a highly
-                            concentrated dose of Spirulina slurry or Vita-Chem.</li>
-                        <li>Freeze solidly. Once frozen, pop them out into a ziplock bag. You now have months worth of
-                            premium, gut-loaded frozen fish food.</li>
-                    </ol>
-
-                    <div class="expert-only expert-callout">
-                        <h4><span class="expert-badge">Expert</span> Aquarium Hygiene</h4>
-                        <p>Never dump Daphnia culture water directly into your display aquarium. Daphnia water is often
-                            loaded with dissolved phosphates, nitrates, and biological organics (especially if
-                            yeast/spirulina is used). Always harvest the Daphnia, rinse them gently in fresh,
-                            dechlorinated water while inside the net/sieve, and then feed them to your fish.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 7. CALCULATOR -->
-            <section id="calculator" class="section">
-                <div class="card">
-                    <h2>Deep Analytics & Feeding Calculator</h2>
-                    <p>Calculate your precise metrics based on massive scaling data. This sets the mathematical
-                        baselines for your specific container.</p>
-
-                    <div class="img-container">
-                        <img src="calculator_daphnia.png" alt="High tech glowing data interface over Daphnia">
-                        <div class="img-caption">Utilizing precise volume-to-density analytics prevents lethal
-                            overloading of the biological capacity.</div>
-                    </div>
-
-                    <div class="calc-wrapper">
-                        <div class="calc-input-group">
-                            <label><strong>Main Culture Volume:</strong></label>
-                            <input type="number" id="calc-vol" value="20" min="0.5" step="0.5">
-                            <select id="unit-toggle"
-                                style="background:var(--bg-color); color:white; border:1px solid #334155; padding:12px; border-radius:8px; font-size:1.1rem; cursor:pointer;">
-                                <option value="L">Liters</option>
-                                <option value="G">Gallons (US)</option>
-                            </select>
-                        </div>
-
-                        <div class="metrics-grid">
-                            <div class="metric-box">
-                                <div style="color:var(--text-secondary); font-size:0.9rem;">Maximum Sustainable Density
-                                </div>
-                                <div class="metric-val" id="met-density">10,000</div>
-                                <div style="font-size: 0.75rem; color: #64748b;">(500 Daphnia / Liter)</div>
-                            </div>
-                            <div class="metric-box">
-                                <div style="color:var(--text-secondary); font-size:0.9rem;">Target 3-Day Harvest</div>
-                                <div class="metric-val" id="met-harvest">2,500</div>
-                                <div style="font-size: 0.75rem; color: #64748b;">(25% of Population)</div>
-                            </div>
-                            <div class="metric-box">
-                                <div style="color:var(--text-secondary); font-size:0.9rem;">Baseline Spirulina Slurry
-                                </div>
-                                <div class="metric-val" id="met-feed">0.05g</div>
-                                <div style="font-size: 0.75rem; color: #64748b;">(Only if water is clear!)</div>
-                            </div>
-
-                            <!-- Expert Metrics -->
-                            <div class="metric-box expert-metric expert-only">
-                                <div style="color:var(--expert-color); font-size:0.9rem;">Water Exchange Profile</div>
-                                <div class="metric-val" id="met-exchange">4.0 L</div>
-                                <div style="font-size: 0.75rem; color: #64748b;">(20% Change Volume)</div>
-                            </div>
-                            <div class="metric-box expert-metric expert-only">
-                                <div style="color:var(--expert-color); font-size:0.9rem;">HUFA Emulsion Prep</div>
-                                <div class="metric-val" id="met-hufa">20 ml</div>
-                                <div style="font-size: 0.75rem; color: #64748b;">(Isolate harvest volume into 20ml dose)
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 8. TROUBLESHOOTING -->
-            <section id="troubleshooting" class="section">
-                <div class="card">
-                    <h2>Advanced Diagnostic Tree</h2>
-                    <p>Select your primary symptom to isolate and identify the exact chemical or biological failure mode
-                        of your culture.</p>
-
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
-                        <div class="img-container" style="margin: 0;">
-                            <img src="crashed_cloudy_tank.png" alt="A murky, toxic crashed aquarium tank">
-                            <div class="img-caption">Severe Bacterial Bloom</div>
-                        </div>
-                        <div class="img-container" style="margin: 0;">
-                            <img src="diagnostic_microscope.png"
-                                alt="A glowing microscope slide illuminating Daphnia pathology">
-                            <div class="img-caption">Forensic Pathology Analysis</div>
-                        </div>
-                    </div>
-
-                    <div id="diagnostic-tree">
-                        <!-- JS injected -->
-                    </div>
-                </div>
-            </section>
-
+        <div class="img-container">
+            <img src="nano_culture_jar.png" alt="Nano culture jar with green water glow">
+            <div class="img-caption">A beautifully illuminated nano culture — even a single jar can sustain a solo betta fish with weekly harvests.</div>
         </div>
-    </main>
 
-    <script>
-        // Tab Navigation
-        const navBtns = document.querySelectorAll('.nav-btn');
-        const sections = document.querySelectorAll('.section');
+        <div class="info-box">📏 <strong>Minimum Viable Scale:</strong> A true minimum stable culture is about 5 gallons. Smaller setups work but are extremely sensitive to temperature swings, overfeeding, and neglect. Think of anything under 5 gallons as a starter/backup culture, not a production culture.</div>
 
-        navBtns.forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                navBtns.forEach(b => b.classList.remove('active'));
-                sections.forEach(s => s.classList.remove('active'));
+        <!-- SIZE TABS -->
+        <div class="size-tabs" id="sizeTabs">
+            <button class="size-tab active" onclick="showSize('nano')">≤ 1 Gal (Nano)</button>
+            <button class="size-tab" onclick="showSize('small')">1–5 Gal (Small)</button>
+            <button class="size-tab" onclick="showSize('medium')">5–20 Gal (Medium)</button>
+            <button class="size-tab" onclick="showSize('large')">20–50 Gal (Large)</button>
+            <button class="size-tab" onclick="showSize('production')">50+ Gal (Production)</button>
+        </div>
 
-                e.target.classList.add('active');
-                const targetId = e.target.getAttribute('data-target');
-                document.getElementById(targetId).classList.add('active');
+        <!-- NANO -->
+        <div class="size-panel active" id="size-nano">
+            <h3>Nano Setup (≤ 1 Gallon / ≈ 4 Liters)</h3>
+            <p><strong>Best containers:</strong> Mason jars (quart or half-gallon), deli containers, small plastic bins, repurposed food jars. Wide mouths preferred for oxygen exchange and harvest access.</p>
+            <ul>
+                <li><strong>Aeration:</strong> Not strictly required — daily water changes can substitute. If using air, tie a knot in airline tubing to reduce bubble flow to just a few bubbles per second. <em>Avoid fine air stones</em> — tiny bubbles lodge in the carapace and kill daphnia.</li>
+                <li><strong>Lighting:</strong> Indirect natural window light is sufficient. 12 hours on / 12 off is ideal. No special grow lights needed at this scale.</li>
+                <li><strong>Starter culture:</strong> 50–100 individuals</li>
+                <li><strong>Water changes:</strong> 25–30% every 2–3 days</li>
+                <li><strong>Feeding:</strong> 1–2 drops of spirulina slurry or a few grains of yeast in water, daily</li>
+            </ul>
+            <div class="pro-tip">📊 <strong>Realistic yield:</strong> 50–200 daphnia/week. Enough to supplement feed a solo betta or nano fish tank 3× per week. Not enough for breeding operations.</div>
+            <p><strong>✅ Best for:</strong> Beginners learning the basics, backup/emergency cultures, solo betta owners</p>
+            <p><strong>❌ Cons:</strong> Highly unstable, very sensitive to overfeeding and temperature, crashes quickly if neglected even a few days</p>
+        </div>
 
-                if (window.innerWidth <= 900) toggleMobileMenu(); // Auto-close on mobile
-            });
+        <!-- SMALL -->
+        <div class="size-panel" id="size-small">
+            <h3>Small Setup (1–5 Gallons / 4–19 Liters)</h3>
+            <p><strong>Best containers:</strong> 5-gallon food-grade HDPE buckets (the most popular choice), small aquariums (2.5–5 gal), plastic storage bins, wide-mouth containers. The 5-gallon bucket is the <em>community gold standard</em> — it's cheap, inert, opaque (reduces algae on sides), and easy to harvest from.</p>
+            <ul>
+                <li><strong>Aeration:</strong> Recommended. Small USB air pump with knotted airline tubing, or a coarse air stone set to gentle rolling bubbles. Avoid fine air stones entirely.</li>
+                <li><strong>Lighting:</strong> Natural window light (12 hrs) or a cheap CFL/LED desk lamp on a timer. No expensive aquarium lights needed.</li>
+                <li><strong>Starter culture:</strong> 100–200 individuals</li>
+                <li><strong>Water changes:</strong> 25% twice per week</li>
+                <li><strong>Feeding:</strong> Pinch of spirulina (~100mg) mixed in water, or 1/8 tsp dry yeast in water, every 2–3 days</li>
+            </ul>
+            <div class="pro-tip">📊 <strong>Realistic yield:</strong> 300–700 daphnia/week from a well-managed 5-gallon culture. Enough to provide live food 3–5× weekly for a 20–30 gallon fish tank.</div>
+            <p><strong>✅ Best for:</strong> Single-tank hobbyists, small breeding projects, anyone starting out</p>
+            <p><strong>❌ Cons:</strong> Still relatively sensitive; requires consistent maintenance schedule</p>
+        </div>
+
+        <!-- MEDIUM -->
+        <div class="size-panel" id="size-medium">
+            <h3>Medium Setup (5–20 Gallons / 19–76 Liters)</h3>
+            <p><strong>Best containers:</strong> Sterilite or Rubbermaid storage bins (10–20 gal), standard aquariums (10–20 gal), stacked HDPE buckets. Wide and shallow is better than tall and narrow — more surface area means more oxygen exchange.</p>
+            <ul>
+                <li><strong>Aeration:</strong> Required. Small aquarium pump (rated 20–40 gal) with coarse air stone positioned at one end. This creates a gentle current without trapping daphnia in turbulence.</li>
+                <li><strong>Lighting:</strong> LED strip light on a timer (12–16 hrs) positioned above the container. A cheap $10–20 LED strip is sufficient. Full-spectrum is better but not essential.</li>
+                <li><strong>Filtration:</strong> Optional sponge filter improves water stability and provides bacterial biomass for daphnia to eat.</li>
+                <li><strong>Starter culture:</strong> 200–500 individuals</li>
+                <li><strong>Water changes:</strong> 25% twice per week minimum; 3× per week during peak feeding seasons</li>
+            </ul>
+            <div class="pro-tip">📊 <strong>Realistic yield:</strong> 500–2,000+ daphnia/week. Supports a 50–75 gallon planted community tank or a small breeding room (5–10 tanks).</div>
+            <p><strong>✅ Best for:</strong> Intermediate hobbyists, small breeding rooms, anyone running multiple fish tanks</p>
+        </div>
+
+        <!-- LARGE -->
+        <div class="size-panel" id="size-large">
+            <h3>Large Setup (20–50 Gallons / 76–190 Liters)</h3>
+            <p><strong>Best containers:</strong> Standard aquariums (40–55 gal), large Rubbermaid storage totes (32–44 gal), food-grade HDPE barrels (30–55 gal). At this size, <em>wide and shallow profiles outperform tall tanks</em> — a 40-gallon breeder aquarium (48"×18"×16") is better than a 55-gallon tall (48"×12"×24").</p>
+            <ul>
+                <li><strong>Aeration:</strong> Essential. Medium-capacity pump (ACO-9000 or equivalent, 20–40W). Run 2–3 coarse air stones distributed across the container for even circulation.</li>
+                <li><strong>Lighting:</strong> Full-length LED strip or T5/T8 fluorescent tube running the length of the tank. 12–16 hour photoperiod. Position 6–12 inches above water surface.</li>
+                <li><strong>Water management:</strong> 25% water change 2–3× weekly. At this volume, a dedicated harvest/siphon station makes maintenance much easier.</li>
+                <li><strong>Harvest method:</strong> Fine mesh net sweep, or siphon through a mesh screen during water changes to recapture daphnia.</li>
+            </ul>
+            <div class="pro-tip">📊 <strong>Realistic yield:</strong> 1–2 oz (wet weight) per 10 gallons weekly. A 40-gallon culture produces approximately 4–5 oz/week — enough to feed an entire small breeding room daily.</div>
+            <p><strong>✅ Best for:</strong> Serious breeders, dedicated live food rooms, anyone running 20+ fish tanks</p>
+        </div>
+
+        <!-- PRODUCTION -->
+        <div class="size-panel" id="size-production">
+            <h3>Production Scale (50+ Gallons / 190+ Liters)</h3>
+            <p><strong>Best containers:</strong> Rubbermaid or Tarter stock tanks (100–300 gal), IBC totes (275 gal, food-grade), large outdoor ponds with predator screening. One aquarist sustained an entire fish room for years on four 40-gallon Rubbermaid trash cans — it works but is labor intensive.</p>
+            <ul>
+                <li><strong>Aeration:</strong> High-capacity pump (50W+). Multiple air stones or diffusers distributed to prevent dead zones. Battery backup pump is strongly recommended — a power outage at this scale can crash an entire production culture overnight.</li>
+                <li><strong>Outdoor vs. Indoor:</strong> Outdoor setups benefit from free sunlight but require predator screening, seasonal management, and rain protection. Indoor setups offer year-round stability at higher electricity cost.</li>
+                <li><strong>Feeding system:</strong> Green water phytoplankton culture running in parallel is the most scalable feeding method at this size. Supplemented with spirulina and yeast as needed.</li>
+                <li><strong>Harvest systems:</strong> Standpipe with fine mesh screen, rotary sieve, or dedicated harvest tank with settling time. Manual net harvesting is too labor-intensive at this scale.</li>
+            </ul>
+            <div class="pro-tip">📊 <strong>Realistic yield:</strong> 10–20+ oz wet weight per week from a 100-gallon culture. A well-managed 50+ gal system can supply a large breeding operation (50+ fry tanks) indefinitely.</div>
+            <div class="expert-only">
+                <div class="expert-callout">
+                    <h4><span class="expert-badge">Expert</span> Production Yield Formula</h4>
+                    <p>Expected yield: ~0.003–0.005 oz per gallon per day for D. magna (significantly lower than D. moina's 0.014–0.015 oz/gal/day). A 100-gallon culture produces roughly 0.3–0.5 oz per day, or 2–3.5 oz/week wet weight.</p>
+                    <p>Food conversion ratio for rice bran feeding: approximately 1.7 kg bran → 1 kg wet daphnia biomass. For commercial-scale operations, this is the most cost-effective feeding approach.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>Container Materials: Safe vs. Unsafe</h3>
+        <table class="data-table">
+            <thead><tr><th>Material</th><th>Safety Rating</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr class="good-row"><td>Glass (aquarium glass)</td><td>✅ Safest</td><td>100% inert. Ideal if budget allows.</td></tr>
+                <tr class="good-row"><td>HDPE #2 (food-grade)</td><td>✅ Safe</td><td>Most buckets, totes. Use food-grade for lowest leaching risk.</td></tr>
+                <tr><td>PET #1 (clear bottles)</td><td>✅ Acceptable</td><td>Temporary use only. 2-liter soda bottles work for green water cultures.</td></tr>
+                <tr class="warn-row"><td>Polypropylene #5</td><td>⚠️ Mostly safe</td><td>Some products leach; test before committing.</td></tr>
+                <tr class="danger-row"><td>PVC</td><td>❌ Avoid</td><td>Plasticizers and additives are toxic to daphnia.</td></tr>
+                <tr class="danger-row"><td>Polystyrene #6 (styrofoam)</td><td>❌ Avoid</td><td>Leaches styrenics. Do not use.</td></tr>
+                <tr class="danger-row"><td>Uncoated metal</td><td>❌ Avoid</td><td>All metals leach ions. Especially avoid copper and brass.</td></tr>
+            </tbody>
+        </table>
+        <div class="warning-box">⚠️ <strong>Pre-use protocol:</strong> Rinse all new plastic containers thoroughly with dechlorinated water before use. Never clean with soap, detergent, or any chemical — residue on container walls will crash a culture within 24 hours.</div>
+
+        <h3>Lighting Guide</h3>
+        <p>The most important lighting factor is <strong>photoperiod (hours of light per day)</strong>, not intensity or spectrum. A 12-hour light / 12-hour dark cycle drives consistent asexual reproduction. Continuous light (24 hrs) actually reduces productivity compared to a natural cycle.</p>
+        <ul>
+            <li><strong>Minimum effective:</strong> 8 hours/day</li>
+            <li><strong>Optimal:</strong> 12–14 hours/day on a timer</li>
+            <li><strong>Spectrum:</strong> Full-spectrum is best; blue wavelengths enhance offspring production. Avoid green-only light (increases mortality).</li>
+            <li><strong>Intensity:</strong> Not critical — indirect window light is sufficient. Expensive aquarium LEDs are overkill.</li>
+        </ul>
+
+        <h3>Aeration: The Golden Rule</h3>
+        <div class="warning-box">⚠️ <strong>Fine air stones kill daphnia.</strong> Micro-bubbles from fine air stones lodge inside the carapace and trap daphnia at the water surface where they die. Always use coarse stones, knotted airline tubing, or just the end of the tubing to produce large, slow bubbles.</div>
+        <p>Target: gentle rolling surface agitation. Daphnia should be able to swim freely without being pushed around. You want circulation, not a washing machine. If daphnia are constantly spinning or being swept to one end of the tank, reduce your airflow.</p>
+
+        <h3>Redundancy: The Most Important Setup Decision</h3>
+        <div class="pro-tip">💡 <strong>The #1 rule of serious daphnia culturing: always have at least one backup culture.</strong> Culture crashes are inevitable — not a question of "if" but "when." A beginner with two 5-gallon buckets will always outperform an expert with one perfect 20-gallon setup, because the expert loses everything when it crashes.</div>
+        <p>Recommended redundancy by situation:</p>
+        <ul>
+            <li><strong>Feeding one tank:</strong> 1 main culture + 1 backup (5-gal bucket in a cool corner)</li>
+            <li><strong>Feeding a breeding room (10–20 tanks):</strong> 2–3 main cultures + 2 backups at different ages</li>
+            <li><strong>Large operation (50+ tanks):</strong> 4–6 production cultures, staggered start dates, dedicated backup system</li>
+        </ul>
+        <p>Stagger your culture start dates by 2–4 weeks so they are always at different stages of their lifecycle. When one crashes, the others are in their prime.</p>
+    </div>
+</section><!-- ===== SECTION 3: WATER CHEMISTRY ===== -->
+<section id="chemistry" class="section">
+    <div class="card">
+        <h2>Granular Water Chemistry</h2>
+        <p>Treating your Daphnia water with aquarium-level precision is the difference between a thriving culture and a constant cycle of crashes. You don't need to test every parameter every day — but you need to understand what each one does so you can recognize and fix problems quickly.</p>
+
+        <div class="img-container">
+            <img src="water_chemistry_test.png" alt="Aquarium water chemistry test kits">
+            <div class="img-caption">Basic test kits for pH, GH, KH, and copper are the minimum toolkit for serious Daphnia culturing.</div>
+        </div>
+
+        <h3>⚡ Quick Reference: Parameter Targets</h3>
+        <table class="data-table">
+            <thead><tr><th>Parameter</th><th>Optimal</th><th>Acceptable</th><th>Danger Zone</th></tr></thead>
+            <tbody>
+                <tr><td><strong>Temperature</strong></td><td>18–22°C / 64–72°F</td><td>15–27°C / 59–80°F</td><td>&gt;29°C / 84°F = lethal</td></tr>
+                <tr><td><strong>pH</strong></td><td>7.5–8.0</td><td>6.5–8.5</td><td>&lt;5.5 or &gt;9.5</td></tr>
+                <tr><td><strong>GH (Hardness)</strong></td><td>120–250 mg/L CaCO₃</td><td>90+ mg/L</td><td>&lt;50 mg/L causes molting failure</td></tr>
+                <tr><td><strong>Dissolved O₂</strong></td><td>&gt;5 mg/L</td><td>&gt;3.5 mg/L</td><td>&lt;1 mg/L = lethal</td></tr>
+                <tr><td><strong>Ammonia (NH₃)</strong></td><td>0 ppm</td><td>&lt;0.2 ppm</td><td>&gt;0.8 ppm inhibits feeding</td></tr>
+                <tr><td><strong>Nitrite (NO₂)</strong></td><td>0 ppm</td><td>Near 0</td><td>&gt;6 ppm causes inactivation</td></tr>
+                <tr><td><strong>Chlorine</strong></td><td>0 ppm</td><td>0 ppm</td><td>0.07 mg/L = 48-hr LC50</td></tr>
+                <tr><td><strong>Copper</strong></td><td>0 ppm</td><td>&lt;0.04 mg/L</td><td>&gt;0.04 mg/L causes mass death</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Temperature</h3>
+        <p>Temperature is the single most impactful variable in your culture. It directly controls reproduction rate, lifespan, dissolved oxygen capacity, and bacterial activity. <strong>18–22°C (64–72°F) is the sweet spot</strong> — fast enough reproduction to sustain harvesting, cool enough that daphnia live long and the water holds adequate oxygen.</p>
+        <ul>
+            <li>Above 25°C: reproduction accelerates but lifespan drops; above 28°C cultures crash within weeks</li>
+            <li>Below 15°C: reproduction slows dramatically; below 10°C cultures become dormant</li>
+            <li><strong>Stability matters as much as absolute value</strong> — rapid swings of 3°C+ are more stressful than holding steadily at a suboptimal temperature</li>
+            <li>Indoor cultures in climate-controlled rooms naturally stay in range for most of the year</li>
+            <li>Summer heat is the #1 seasonal killer of cultures — move outdoor cultures indoors before any forecast above 30°C</li>
+        </ul>
+
+        <h3>pH</h3>
+        <p>Daphnia are tolerant of a fairly wide pH range but thrive in slightly alkaline water. Hard water naturally buffers pH and keeps it stable — this is another reason why calcium-rich water is strongly preferred.</p>
+        <ul>
+            <li>Target pH: <strong>7.5–8.0</strong></li>
+            <li>Acceptable: 6.5–8.5 (outside this, stress begins)</li>
+            <li>The stability of pH matters more than the exact value — a steady 7.2 is better than a pH that swings between 6.8 and 8.2 daily</li>
+            <li>If pH drops chronically (common in yeast-fed cultures), add crushed coral or cuttlebone to the bottom of the container — these dissolve slowly, releasing calcium carbonate and buffering acid buildup</li>
+        </ul>
+
+        <h3>Water Hardness (GH &amp; KH)</h3>
+        <p>This is the most overlooked parameter in hobbyist daphnia culture, and it is responsible for far more "mystery deaths" than most people realize. Daphnia are crustaceans — they need calcium to build and shed their exoskeleton. In soft water, they cannot molt properly and die trapped in their own shells.</p>
+        <div class="warning-box">⚠️ <strong>Molting failure in soft water:</strong> If your water is below 90 mg/L CaCO₃ hardness, daphnia become sluggish, stop reproducing, and begin dying within days — even if all other parameters are perfect. The water goes crystal clear (they stop eating) and you may not know why. Always test hardness in a new culture.</div>
+        <ul>
+            <li><strong>Target GH:</strong> 120–250 mg/L as CaCO₃ (roughly 7–14 dGH)</li>
+            <li><strong>Raising hardness naturally:</strong> Place a handful of crushed coral, crushed oyster shells, or a piece of cuttlebone in the container. These dissolve slowly and stop dissolving once pH reaches ~7.8 — they are self-regulating.</li>
+            <li><strong>Quick fix:</strong> Commercial GH/KH booster, Wonder Shell, or Seachem Equilibrium</li>
+            <li><strong>Critical warning:</strong> Never make a sudden large hardness change — exposure to 600 mg/L CaCO₃ in a single water change kills 98–100% of daphnia. Always adjust gradually.</li>
+        </ul>
+
+        <h3>Dissolved Oxygen</h3>
+        <p>Daphnia need dissolved oxygen just like fish. At their preferred temperatures (18–22°C), well-aerated water naturally holds sufficient oxygen. Problems arise when temperatures spike in summer, populations become extremely dense, or overfeeding triggers a bacterial bloom that consumes all available oxygen overnight.</p>
+        <ul>
+            <li>Target: &gt;5 mg/L dissolved oxygen</li>
+            <li>Danger threshold: &lt;1 mg/L (LC50 is 0.6–0.7 mg/L)</li>
+            <li>Daphnia clustering at the surface = oxygen depletion signal — act immediately</li>
+            <li>Always maintain gentle aeration; in summer, increase aeration as temperatures rise</li>
+            <li>Green water cultures can experience oxygen crashes at night when algae respire instead of photosynthesize — aeration is mandatory in green water setups</li>
+        </ul>
+
+        <h3>🚨 Chlorine &amp; Chloramine — The Silent Killer</h3>
+        <div class="warning-box">⚠️ <strong>CRITICAL:</strong> Daphnia magna is one of the most chlorine-sensitive organisms ever tested. The 48-hour LC50 (concentration that kills 50% of individuals) is just <strong>0.018 mg/L</strong> — well below the 0.5–1.5 mg/L typically found in municipal tap water. Using unchlorinated tap water will crash your entire culture within hours.</div>
+        <p><strong>Dechlorination methods (in order of reliability):</strong></p>
+        <table class="data-table">
+            <thead><tr><th>Method</th><th>Removes Chlorine</th><th>Removes Chloramine</th><th>Time Required</th><th>Cost</th></tr></thead>
+            <tbody>
+                <tr class="good-row"><td>Sodium thiosulfate drops</td><td>✅ Yes</td><td>✅ Yes (at 2× dose)</td><td>Immediate</td><td>Very cheap</td></tr>
+                <tr class="good-row"><td>Commercial dechlorinator (Seachem Prime, etc.)</td><td>✅ Yes</td><td>✅ Yes</td><td>Immediate</td><td>Cheap</td></tr>
+                <tr class="warn-row"><td>Aging water 24–48 hrs (open container)</td><td>✅ Yes</td><td>❌ NO</td><td>24–48 hours</td><td>Free</td></tr>
+                <tr class="danger-row"><td>Boiling</td><td>✅ Yes</td><td>❌ NO</td><td>30+ minutes</td><td>Low</td></tr>
+                <tr class="warn-row"><td>Activated carbon filter</td><td>✅ Yes</td><td>⚠️ Inconsistent</td><td>Minutes to hours</td><td>Moderate</td></tr>
+            </tbody>
+        </table>
+        <div class="pro-tip">💡 Most municipal water systems use chloramine (not plain chlorine) because it's more stable and harder to remove. <strong>Aging water does NOT remove chloramine.</strong> If your city uses chloramine (check your annual water quality report), you must use sodium thiosulfate or a commercial dechlorinator.</div>
+
+        <h3>🚨 Copper — The Other Silent Killer</h3>
+        <p>Copper is extremely toxic to all invertebrates, including Daphnia. The threshold for population-level effects is only <strong>40–60 µg/L (0.04–0.06 mg/L)</strong> — a level that can easily be present in tap water from corroding copper pipes, especially in older homes.</p>
+        <div class="warning-box">⚠️ <strong>Never use:</strong> copper-based algaecides (copper sulfate), brass fittings or valves in your water system, any aquarium medication containing copper. All of these will kill your culture.</div>
+        <p>If you suspect copper contamination, use a copper test kit (available at aquarium stores). Solutions: RO water blended with tap water, spring water, or carbon-filtered water.</p>
+        <p><strong>Important protection note:</strong> Both hard water and dissolved organic carbon (DOC — present in green water cultures) significantly reduce copper bioavailability. Green water cultures are naturally somewhat protected against trace copper contamination, which is another advantage of algae-based feeding.</p>
+
+        <h3>Water Sources Compared</h3>
+        <table class="data-table">
+            <thead><tr><th>Source</th><th>Rating</th><th>Pros</th><th>Cons / Requirements</th></tr></thead>
+            <tbody>
+                <tr class="good-row"><td>Tap water (dechlorinated)</td><td>⭐⭐⭐⭐⭐ Best</td><td>Mineral-rich, consistent, inexpensive</td><td>Must dechlorinate; test for copper if older home</td></tr>
+                <tr><td>Well water</td><td>⭐⭐⭐⭐ Good</td><td>No chlorine/chloramine, often mineral-rich</td><td>Test for iron, hardness, heavy metals before use</td></tr>
+                <tr><td>Spring water (bottled)</td><td>⭐⭐⭐ Good</td><td>No chlorine, consistent quality</td><td>Expensive at scale; pH and mineral content varies by brand</td></tr>
+                <tr class="danger-row"><td>RO / distilled water alone</td><td>❌ Do NOT use</td><td>No contaminants</td><td>Zero minerals = molting failure and death. Must blend 50/50 with tap or re-mineralize.</td></tr>
+                <tr class="warn-row"><td>Rainwater</td><td>⚠️ Caution</td><td>No chlorine</td><td>Often acidic; may contain atmospheric contaminants; must test and supplement minerals</td></tr>
+            </tbody>
+        </table>
+
+        <h3>New Culture Setup: Step-by-Step Water Prep</h3>
+        <ol style="margin-left:20px; margin-bottom:20px;">
+            <li><strong>Collect water</strong> — use dechlorinated tap water as your default.</li>
+            <li><strong>Dechlorinate</strong> — add sodium thiosulfate or commercial dechlorinator. Stir. Wait 5 minutes.</li>
+            <li><strong>Check &amp; adjust hardness</strong> — if your tap water is soft (&lt;90 mg/L CaCO₃), add a small amount of crushed coral or a GH/KH booster. Let dissolve for 1 hour.</li>
+            <li><strong>Check pH</strong> — should read 7.0–8.5 after hardness adjustment. If below 6.5, add a small amount of crushed coral and wait.</li>
+            <li><strong>Temperature match</strong> — let water reach 18–22°C before adding daphnia. Cold tap water shocks them.</li>
+            <li><strong>Start aeration</strong> — run your airstone or pump for 30–60 minutes to oxygenate and off-gas any residual chemicals.</li>
+            <li><strong>Verify parameters</strong> — pH 7–8.5, temperature 18–22°C, zero chlorine. Then add daphnia.</li>
+            <li><strong>Feed lightly</strong> — first feeding should be very minimal. A few drops of spirulina slurry or a tiny pinch of yeast. Less is more for the first week.</li>
+        </ol>
+
+        <h3>Water Change Guide</h3>
+        <p>Water changes serve multiple purposes: they remove metabolic waste and accumulated ammonia, dilute chemical crowding signals (a major crash trigger), replenish minerals, and prevent pH drift. Regular water changes are more important than perfect feeding.</p>
+        <ul>
+            <li><strong>Small cultures (≤5 gal):</strong> 25–30% every 2–3 days</li>
+            <li><strong>Medium cultures (5–20 gal):</strong> 25% twice weekly minimum</li>
+            <li><strong>Large cultures (20+ gal):</strong> 25% twice weekly, ideally 3× weekly at peak</li>
+            <li><strong>How to water change without losing daphnia:</strong> Pour very slowly, or use a siphon with a fine mesh screen on the intake end. Let the culture settle for 5 minutes before removing water — daphnia will drift away from the disturbance.</li>
+            <li><strong>New water temperature:</strong> Must be within 2°C of the culture water. Sudden thermal shock causes stress and triggers ephippia production.</li>
+        </ul>
+
+        <div class="expert-only">
+            <div class="expert-callout">
+                <h4><span class="expert-badge">Expert</span> The Nitrogen Cycle in Daphnia Cultures</h4>
+                <p>Unlike fish tanks, daphnia cultures do not need to be "cycled" in the traditional aquarium sense. However, nitrogenous waste still accumulates and becomes toxic at elevated levels.</p>
+                <p><strong>Key thresholds:</strong> Ammonia above 0.81 mgN-NH₃/L reduces daphnia filtration rate by 40%. Nitrite above 6 ppm causes complete inactivation. Nitrate is relatively benign below 250 mg/L at 20°C.</p>
+                <p>The most effective ammonia control in daphnia cultures is simply regular water changes combined with avoiding overfeeding. Sponge filters provide some biological filtration, but the continuous water changes in a well-managed culture are the primary control mechanism.</p>
+                <p><strong>Green water advantage:</strong> Algae in green water cultures directly uptake ammonia and nitrite as nutrients. This is why green water cultures can tolerate heavier biological loads — the algae acts as a living biological filter. This is another reason experienced culturists prefer green water for large-scale production.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===== SECTION 4: FEEDING & NUTRITION ===== -->
+<section id="nutrition" class="section">
+    <div class="card">
+        <h2>Feeding &amp; Nutrition</h2>
+        <p>Daphnia are blind filter-feeders — they cannot see or chase food. Their five pairs of thoracic limbs constantly beat, creating a current that draws water (and everything in it) into their filtering apparatus. Your job is to keep the right concentration of particles suspended in that water at all times — not too many, not too few.</p>
+
+        <div class="img-container">
+            <img src="spirulina_slurry.png" alt="Spirulina slurry being mixed for daphnia feeding">
+            <div class="img-caption">Always mix spirulina and other fine powders into water before adding to your culture — dry powder sinks to the bottom where daphnia cannot reach it.</div>
+        </div>
+
+        <div class="warning-box">
+            🚨 <strong>The Golden Rule of Daphnia Feeding:</strong> Never add food if the water is still cloudy from your last feeding. Wait for the water to return to complete clarity before feeding again. If you break this rule consistently, your culture will crash. This single rule prevents 80% of all beginner culture failures.
+        </div>
+
+        <h3>Water Clarity as Your Feeding Gauge</h3>
+        <ul>
+            <li><strong>Water clears in &lt;4 hours after feeding:</strong> You are underfeeding. Increase amount or frequency.</li>
+            <li><strong>Water clears within 12–24 hours:</strong> ✅ Perfect. The daphnia are consuming food as fast as you add it.</li>
+            <li><strong>Water stays cloudy for 24+ hours:</strong> You are overfeeding. Stop immediately and do a 50% water change.</li>
+            <li><strong>Water turns milky or smells foul:</strong> Bacterial bloom in progress — emergency water change required now.</li>
+        </ul>
+
+        <h3>Food Options Compared</h3>
+        <table class="data-table">
+            <thead><tr><th>Food</th><th>Quality</th><th>Risk of Crash</th><th>Cost</th><th>Best For</th></tr></thead>
+            <tbody>
+                <tr class="good-row"><td>Live green water (Chlorella)</td><td>⭐⭐⭐⭐⭐ Best</td><td>Very Low (self-replenishing)</td><td>Free once cultured</td><td>All setups, highest yield</td></tr>
+                <tr class="good-row"><td>Spirulina powder (mixed)</td><td>⭐⭐⭐⭐ Excellent</td><td>Low if dosed correctly</td><td>Very cheap</td><td>All setups, easiest</td></tr>
+                <tr><td>Baker's yeast (dry)</td><td>⭐⭐⭐ Good</td><td>Moderate — rots fast if overdosed</td><td>Very cheap</td><td>All setups, most available</td></tr>
+                <tr><td>Brewer's yeast (dead cells)</td><td>⭐⭐⭐ Good</td><td>Moderate</td><td>Cheap</td><td>Alternative to baker's yeast</td></tr>
+                <tr class="good-row"><td>Spirulina + Yeast combo</td><td>⭐⭐⭐⭐⭐ Best combo</td><td>Low-moderate</td><td>Very cheap</td><td>Fastest growth rates</td></tr>
+                <tr><td>Chlorella powder</td><td>⭐⭐⭐⭐ Excellent</td><td>Low</td><td>Cheap</td><td>Alternative to live green water</td></tr>
+                <tr class="expert-only"><td>Rice bran (defatted)</td><td>⭐⭐⭐ Good</td><td>Low</td><td>Bulk cheapest</td><td>Large-scale (20+ gal) only</td></tr>
+                <tr class="expert-only"><td>Wheat germ/bran</td><td>⭐⭐⭐ Good</td><td>Low</td><td>Cheap in bulk</td><td>Large-scale supplemental</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Baker's Yeast — The Beginner's Staple</h3>
+        <p>Active dry baker's yeast (the same kind used for bread) is the most accessible, cheapest, and most forgiving food for starter cultures. It is not the most nutritious option long-term, but it will sustain a culture reliably when used correctly.</p>
+        <ul>
+            <li><strong>Preparation:</strong> Mix a small amount of dry yeast in a cup of room-temperature (not hot) water to create a suspension. Add this suspension to the culture — never add dry yeast directly.</li>
+            <li><strong>Dosing by tank size:</strong></li>
+        </ul>
+        <table class="data-table">
+            <thead><tr><th>Tank Size</th><th>Yeast Amount</th><th>Frequency</th><th>Water After Feeding Should…</th></tr></thead>
+            <tbody>
+                <tr><td>1 Gallon</td><td>2–3 grains of dry yeast in 1 tbsp water</td><td>Every 2–3 days</td><td>Cloud slightly, clear in 12–24 hrs</td></tr>
+                <tr><td>5 Gallons</td><td>1/16 tsp dry yeast in ½ cup water</td><td>Every 2–3 days</td><td>Cloud slightly, clear in 12–24 hrs</td></tr>
+                <tr><td>10 Gallons</td><td>1/8 tsp dry yeast in 1 cup water</td><td>Every 2–3 days</td><td>Cloud slightly, clear in 12–24 hrs</td></tr>
+                <tr><td>20 Gallons</td><td>1/4 tsp dry yeast in 2 cups water</td><td>Every 2–3 days</td><td>Cloud slightly, clear in 12–24 hrs</td></tr>
+            </tbody>
+        </table>
+        <div class="warning-box">⚠️ <strong>Yeast rots fast.</strong> Uneaten yeast in warm water produces a bacterial explosion within 12–24 hours. Always underfeed rather than overfeed, especially in warm weather or warm rooms.</div>
+
+        <h3>Spirulina Powder — The Expert's Choice</h3>
+        <p>Spirulina is a cyanobacterium (blue-green algae) sold as a health supplement in powder form. For daphnia, it provides a superior nutritional profile compared to yeast — more vitamins, antioxidants, and a more complete amino acid profile. It also enriches the daphnia themselves, which then pass these nutrients to your fish.</p>
+        <ul>
+            <li><strong>Preparation (critical):</strong> Mix spirulina in water FIRST, stir vigorously, then pour into the culture. Dry powder sinks and rots on the bottom.</li>
+            <li><strong>Dosing:</strong> ~100mg (a small pinch — NOT a gram, not a teaspoon) per 5 gallons. This is a tiny amount. Less is more.</li>
+            <li><strong>Frequency:</strong> Daily or every other day once you learn your culture's consumption rate</li>
+            <li><strong>Gut loading:</strong> Feed spirulina 24–48 hours before harvesting daphnia for fish — the spirulina passes through to your fish, enhancing their coloration and immunity</li>
+        </ul>
+
+        <h3>The Winning Combination: Spirulina + Yeast</h3>
+        <p>Research by experienced culturists has shown that a combination of <strong>baker's yeast + spirulina + algae grows Daphnia populations 3.7× faster</strong> than any single food source. The yeast provides quick energy and bacterial biomass; the spirulina provides long-chain fatty acids and vitamins; together they create a complete nutritional matrix.</p>
+        <div class="pro-tip">💡 <strong>Recommended combo feed:</strong> Mix a small pinch of spirulina powder + a few grains of baker's yeast in a cup of water. Stir well. Feed this suspension every 2–3 days, adjusting based on your water clarity rule. This is the go-to feeding method for most experienced hobbyists.</div>
+
+        <h3>Feeding Schedule by Season</h3>
+        <table class="data-table">
+            <thead><tr><th>Season / Temperature</th><th>Feeding Frequency</th><th>Amount per Feeding</th><th>Rationale</th></tr></thead>
+            <tbody>
+                <tr><td>Summer (warm room, 22–26°C)</td><td>Daily</td><td>Slightly less per feeding</td><td>High metabolic rate; culture consumes food faster</td></tr>
+                <tr class="good-row"><td>Spring/Fall (18–22°C)</td><td>Every 2 days</td><td>Standard dose</td><td>Optimal conditions — standard protocol</td></tr>
+                <tr><td>Winter (cool room, 15–18°C)</td><td>Every 3 days</td><td>Reduce to ~75% of standard</td><td>Slow metabolism; water stays cloudy longer</td></tr>
+                <tr class="warn-row"><td>Heatwave (&gt;26°C)</td><td>Every 2–3 days (reduce)</td><td>Very light</td><td>High heat = high oxygen consumption = lower tolerance for food</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Gut Loading: Making Daphnia More Nutritious for Your Fish</h3>
+        <p>Gut loading means feeding daphnia nutritionally-rich foods 24–48 hours before harvesting them for your fish. What the daphnia eat, your fish eat. This is a free way to dramatically increase the nutritional value of your live food.</p>
+        <ul>
+            <li><strong>For color enhancement:</strong> Feed dense spirulina slurry 24–48 hrs before harvest — carotenoids pass through to fish and deepen red, orange, and yellow pigmentation</li>
+            <li><strong>For omega-3 enrichment:</strong> Astaxanthin powder from <em>Haematococcus pluvialis</em> algae fed 48 hrs before harvest</li>
+            <li><strong>Visible sign of gut loading:</strong> Well-fed daphnia look darker and more opaque — their digestive tract is visible and full. This is exactly what you want to feed to your fish.</li>
+        </ul>
+
+        <h3>What to Never Feed Your Daphnia</h3>
+        <ul>
+            <li>❌ <strong>Unchlorinated tap water mixed with food</strong> — water and food both go into the culture; use only dechlorinated water for mixing</li>
+            <li>❌ <strong>Wild-collected algae or pond water</strong> — may contain predators (hydra, cyclops, dragonfly larvae), parasites, or toxic cyanobacteria</li>
+            <li>❌ <strong>More food when water is cloudy</strong> — this is the #1 crash cause, full stop</li>
+            <li>❌ <strong>Any medication or chemical treatment</strong> — even "invertebrate safe" products can harm daphnia</li>
+            <li>❌ <strong>Dry powder directly into the culture</strong> — always mix with water first</li>
+            <li>❌ <strong>Toxic cyanobacteria strains</strong> — some blue-green algae (Microcystis especially) produce toxins that crash cultures. Only use tested, confirmed-safe spirulina supplements.</li>
+        </ul>
+
+        <div class="expert-only">
+            <div class="expert-callout">
+                <h4><span class="expert-badge">Expert</span> Large-Scale Feeding: Rice Bran &amp; Wheat Germ</h4>
+                <p>For cultures above 20 gallons, defatted rice bran is one of the most cost-effective feeding options. Nutritional profile: 24% crude protein, 22.8% crude fat, 9.2% crude fiber.</p>
+                <p><strong>Dosing formula:</strong> 1 gram of rice bran per 500 individual daphnia per day. Distribute in 2–3 small feedings rather than one large dose. Food conversion ratio: approximately 1.7 kg rice bran → 1 kg wet daphnia biomass.</p>
+                <p>Combine with spirulina (50–100mg per 5 gallons) and yeast (1/8 tsp per 10 gallons) for maximum growth rates. Rice bran alone produces adequate growth but the combination significantly outperforms any single food.</p>
+            </div>
+        </div>
+    </div>
+</section><!-- ===== SECTION 5: GREEN WATER ===== -->
+<section id="greenwater" class="section">
+    <div class="card">
+        <h2>Culturing Green Water (Phytoplankton)</h2>
+        <p>Green water — a dense suspension of microscopic freshwater algae — is the closest thing to a "set it and forget it" feeding system for Daphnia. Unlike yeast or spirulina, live algae continuously regenerates in the culture vessel, meaning it is almost impossible to overfeed. It produces oxygen during the day, naturally reduces ammonia, and grows denser populations than any other food source.</p>
+
+        <div class="img-container">
+            <img src="green_water_bottles.png" alt="2-liter bottles cultivating dense green water culture">
+            <div class="img-caption">Intensely lit 2-liter PET bottles cultivating dense Chlorella culture — a separate algae "farm" that feeds your Daphnia farm.</div>
+        </div>
+
+        <div class="pro-tip">💡 <strong>The ultimate combination:</strong> Run a green water culture in parallel with your Daphnia culture. Pour green water into the Daphnia tank daily. The Daphnia graze and clear the green water in hours. This cycle sustains itself with minimal intervention and produces the densest, healthiest Daphnia populations possible.</div>
+
+        <h3>Best Algae Species for Daphnia Cultures</h3>
+        <table class="data-table">
+            <thead><tr><th>Algae Species</th><th>Rating</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr class="good-row"><td>Chlorella vulgaris</td><td>⭐⭐⭐⭐⭐ Best</td><td>Most recommended; easy to culture; very nutritious; grows reliably indoors</td></tr>
+                <tr class="good-row"><td>Scenedesmus dimorphus</td><td>⭐⭐⭐⭐ Excellent</td><td>Also excellent for Daphnia; slightly larger cell size</td></tr>
+                <tr><td>Chlamydomonas reinhardtii</td><td>⭐⭐⭐⭐ Good</td><td>Motile; stays in suspension well; very palatable</td></tr>
+                <tr><td>Ankistrodesmus</td><td>⭐⭐⭐ Good</td><td>Common in outdoor cultures; works well</td></tr>
+                <tr class="danger-row"><td>Microcystis (cyanobacteria)</td><td>❌ AVOID</td><td>Toxic strain; produces microcystin which crashes Daphnia cultures. Never use wild-collected water that may contain it.</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Method 1: Passive Green Water (Beginner — Outdoor or Sunny Window)</h3>
+        <p>The simplest approach: let nature do the work.</p>
+        <ol style="margin-left:20px; margin-bottom:15px;">
+            <li>Fill a clear container (2-liter bottle, clear bucket, or aquarium) with dechlorinated water</li>
+            <li>Add a small amount of liquid fertilizer (1–2 drops per gallon of aquarium-safe plant fertilizer, or a tiny pinch of miracle-gro dissolved in water)</li>
+            <li>Place in direct sunlight (south-facing window or outdoors in summer)</li>
+            <li>Wait 3–7 days — the water will turn progressively green as algae bloom naturally</li>
+            <li>Pour some into your Daphnia culture daily (20–30% of the Daphnia tank volume)</li>
+        </ol>
+        <div class="warning-box">⚠️ <strong>Passive green water risks:</strong> Wild algae blooms may include toxic cyanobacteria strains. If your green water smells foul, has a blue-green color (not pure green), or forms a surface scum, discard it and start over. Only use bright, clear green water.</div>
+
+        <h3>Method 2: Active Green Water Culture (Recommended — Controlled)</h3>
+        <p>Purchase a starter culture of Chlorella or Scenedesmus from a reputable supplier. Grow it in controlled conditions, then use it to reliably feed your Daphnia. More work to set up, but far more reliable and safer than passive methods.</p>
+        <ul>
+            <li><strong>Containers:</strong> 2-liter PET bottles (clear), gallon jugs, or small aquariums. Use clear containers so light penetrates fully.</li>
+            <li><strong>Medium:</strong> Dechlorinated water + diluted liquid plant fertilizer (Miracle-Gro, Greenwater Farm nutrient, or similar) at about 1/4 of normal plant dosing</li>
+            <li><strong>Aeration:</strong> Essential for active cultures. Run an air stone in each bottle to keep algae suspended and prevent settling. CO₂ injection dramatically accelerates growth (not required but speeds production).</li>
+            <li><strong>Lighting:</strong> This is critical for algae. T5 fluorescent or bright LED grow lights positioned close (&lt;6 inches) to the culture for 14–16 hours/day. Algae need significantly more light than daphnia.</li>
+            <li><strong>Harvesting from algae culture:</strong> Pour 30–50% of the algae culture into the Daphnia tank daily or every other day. Replace with fresh fertilizer solution. Culture regenerates within 1–2 days under good light.</li>
+        </ul>
+
+        <h3>Lighting Requirements for Green Water Production</h3>
+        <table class="data-table">
+            <thead><tr><th>Light Source</th><th>Distance from Culture</th><th>Hours/Day</th><th>Growth Rate</th></tr></thead>
+            <tbody>
+                <tr class="warn-row"><td>Indirect window light</td><td>N/A</td><td>Variable (weather-dependent)</td><td>Slow; inconsistent</td></tr>
+                <tr><td>Direct south-facing window</td><td>N/A</td><td>6–10 hrs (seasonal)</td><td>Moderate in summer</td></tr>
+                <tr class="good-row"><td>T5 fluorescent grow light</td><td>2–4 inches</td><td>14–16 hrs</td><td>Fast; consistent</td></tr>
+                <tr class="good-row"><td>LED grow strip (6500K+)</td><td>2–6 inches</td><td>14–16 hrs</td><td>Fast; energy-efficient</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Green Water vs. Clear Water: Which is Right for You?</h3>
+        <table class="data-table">
+            <thead><tr><th>Feature</th><th>Green Water Culture</th><th>Clear Water Culture (Yeast/Spirulina)</th></tr></thead>
+            <tbody>
+                <tr><td>Overfeeding risk</td><td>✅ Very low — algae is alive and self-replenishing</td><td>❌ High — yeast rots quickly</td></tr>
+                <tr><td>Daphnia density</td><td>✅ Higher — better nutrition = larger populations</td><td>⚠️ Moderate</td></tr>
+                <tr><td>Oxygen production</td><td>✅ Natural daytime O₂ from photosynthesis</td><td>⚠️ Depends entirely on aeration</td></tr>
+                <tr><td>Setup complexity</td><td>⚠️ Requires parallel algae culture setup</td><td>✅ Simple — just buy spirulina or yeast</td></tr>
+                <tr><td>Visibility into culture</td><td>❌ Opaque — hard to see daphnia or problems</td><td>✅ Clear water = easy monitoring</td></tr>
+                <tr><td>Light requirements</td><td>❌ Needs 14–16 hrs bright light for algae</td><td>✅ Minimal light needed</td></tr>
+                <tr><td>Best for</td><td>High-production setups (10+ gal), experienced hobbyists</td><td>Beginners, small cultures, limited light</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Troubleshooting Your Green Water Culture</h3>
+        <table class="data-table">
+            <thead><tr><th>Problem</th><th>Likely Cause</th><th>Fix</th></tr></thead>
+            <tbody>
+                <tr><td>Water is yellow-green or brown, not bright green</td><td>Wrong algae species, or culture is old and crashing</td><td>Restart with fresh Chlorella starter; increase nutrients</td></tr>
+                <tr><td>Algae settles to bottom quickly</td><td>No aeration; dead culture</td><td>Add air stone; check if culture is still alive under microscope</td></tr>
+                <tr><td>Blue-green scum forming on surface</td><td>Cyanobacteria bloom (toxic)</td><td>Discard entire culture; bleach container; restart</td></tr>
+                <tr><td>Daphnia culture clears too fast</td><td>Not enough green water volume; underpowered algae production</td><td>Scale up algae production; add more lighting; use additional bottles</td></tr>
+                <tr><td>Algae culture not turning green after a week</td><td>Insufficient light; no nutrients; contamination</td><td>Move closer to light; add fertilizer; check for grazer contamination</td></tr>
+            </tbody>
+        </table>
+
+        <div class="expert-only">
+            <div class="expert-callout">
+                <h4><span class="expert-badge">Expert</span> Semi-Continuous Green Water Production</h4>
+                <p>For production-scale operations, run 4–6 two-liter bottles in a rotation. Each day, harvest 50% from one bottle and replace with fresh fertilizer solution. Rotate which bottle you harvest from each day. This provides a continuous daily supply of algae while maintaining productive, never-fully-depleted cultures.</p>
+                <p>Under strong T5 fluorescent lighting (14–16 hrs), 2-liter bottles can regenerate fully in 24–36 hours after a 50% harvest. This system can supply a 20-gallon daphnia culture indefinitely with no external food purchases.</p>
+                <p><strong>Optional enhancement:</strong> CO₂ injection at a slow rate (1 bubble per second) into algae bottles dramatically accelerates growth. Carbon is the limiting nutrient for algae in most setups. Even a simple DIY yeast-based CO₂ reactor connected to the algae bottles can 2–3× your algae production rate.</p>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ===== SECTION 6: HARVESTING ===== -->
+<section id="harvest" class="section">
+    <div class="card">
+        <h2>Harvesting Your Culture</h2>
+        <p>Harvesting is not just about collecting food for your fish — it is a critical population management step. Overcrowded cultures stop reproducing entirely, then crash. Regular harvesting keeps population density in the productive range, dilutes chemical crowding signals, and ensures your culture remains in a constant state of explosive growth rather than plateau and collapse.</p>
+
+        <div class="img-container">
+            <img src="daphnia_harvest_net.png" alt="Daphnia being harvested with a fine mesh net">
+            <div class="img-caption">Daphnia drawn to a flashlight beam being scooped with a fine-mesh net — the light trapping technique concentrates thousands of organisms in seconds.</div>
+        </div>
+
+        <h3>When to Harvest: Knowing Your Culture is Ready</h3>
+        <ul>
+            <li><strong>Minimum density before first harvest:</strong> At least 10 daphnia per 20ml sample. Take a clear glass, scoop a small amount from mid-water column, and count. If you see fewer than 10, wait another week.</li>
+            <li><strong>Visual cue — the swarm:</strong> When your culture is ready, you will see visible clouds of daphnia moving through the water, especially when a light is shone in from the side. This is the ideal harvest moment.</li>
+            <li><strong>The 25% rule:</strong> Never harvest more than 25% of the visible population in a single session. Leave at least 75% of your culture intact as breeding stock.</li>
+            <li><strong>After reaching minimum density:</strong> Harvest weekly or twice weekly. The act of harvesting stimulates the remaining population to reproduce faster (less competition).</li>
+        </ul>
+
+        <div class="info-box">📅 <strong>Harvest rhythm:</strong> The most sustainable pattern is to harvest 10–20% of the population every 2–3 days, or 25–30% once weekly. Daily small harvests are gentler on the culture than infrequent large harvests.</div>
+
+        <h3>Harvesting Techniques</h3>
+
+        <h4>1. Light Trapping (Most Efficient)</h4>
+        <p>Daphnia are positively phototactic — they are hardwired to swim toward light. This makes mass harvesting almost effortless.</p>
+        <ol style="margin-left:20px; margin-bottom:15px;">
+            <li>Turn off room lights or dim them significantly</li>
+            <li>Hold a flashlight or phone torch against the side or top of the culture vessel</li>
+            <li>Wait 30–60 seconds — daphnia will congregate in a dense cloud near the light source</li>
+            <li>Gently sweep your net through the concentrated cloud with slow, deliberate strokes</li>
+            <li>Repeat 2–3 times, then allow culture to settle before harvesting more</li>
+        </ol>
+
+        <h4>2. Fine Mesh Net Sweeping</h4>
+        <p>Use a net with mesh size between 150–500 microns. This range catches adult daphnia while allowing smaller juveniles to pass through and continue growing.</p>
+        <ul>
+            <li><strong>150–250 micron mesh:</strong> Catches juveniles + adults (use when you want all sizes, e.g. for fry)</li>
+            <li><strong>500 micron mesh:</strong> Selective — catches only larger adults. Smaller daphnia escape back into the culture. Use this when feeding larger fish and want to leave juveniles to grow.</li>
+            <li>Sweep slowly and smoothly. Rapid movements stress and damage daphnia.</li>
+        </ul>
+
+        <h4>3. Siphon Harvest</h4>
+        <p>Place a 150-micron mesh screen over the opening of a harvest bucket or container. Siphon culture water through the screen — daphnia collect on the mesh while water drains through. Gently rinse the mesh into a container of clean water. This method works well for large cultures and doubles as a water change.</p>
+
+        <h3>Rinsing Your Harvest</h3>
+        <p>Always rinse harvested daphnia before adding them to your fish tank. Culture water contains waste metabolites, excess food particles, and bacteria that can spike ammonia in your aquarium.</p>
+        <ol style="margin-left:20px; margin-bottom:15px;">
+            <li>Pour harvested daphnia into a fine mesh net or coffee filter</li>
+            <li>Gently run dechlorinated water through them for 10–15 seconds</li>
+            <li>The daphnia will survive this brief rinse; they will not survive extended time out of water</li>
+            <li>Immediately transfer to fish tank or a holding container with tank water</li>
+        </ol>
+
+        <h3>Storing Live Daphnia</h3>
+        <table class="data-table">
+            <thead><tr><th>Storage Method</th><th>Duration</th><th>Notes</th></tr></thead>
+            <tbody>
+                <tr class="good-row"><td>In original culture water (room temp)</td><td>3–4 days</td><td>Best option; they continue living and can be fed to fish as-needed</td></tr>
+                <tr><td>Refrigerator (4–8°C) with water</td><td>Up to 1 week</td><td>Metabolism slows dramatically; do small water changes every 2 days; do not freeze</td></tr>
+                <tr><td>Frozen (ice cube tray)</td><td>Several months</td><td>Nutritional value mostly preserved; live movement and enzyme benefits lost; still excellent supplemental food</td></tr>
+            </tbody>
+        </table>
+
+        <h3>🐠 How Much Daphnia to Feed Your Fish</h3>
+        <p>Uneaten daphnia won't immediately crash water quality — they survive in freshwater aquariums and continue swimming. This makes daphnia more forgiving than many live foods. However, feeding appropriate quantities is still important for your culture's sustainability.</p>
+
+        <div class="species-grid">
+            <div class="species-card">
+                <h4>🐠 Betta Fish</h4>
+                <div class="amount">5–10</div>
+                <div class="detail">Per feeding, 3× weekly. Use adult daphnia. Live daphnia are exceptional for bringing bettas into breeding condition.</div>
+            </div>
+            <div class="species-card">
+                <h4>🐟 Nano Fish &amp; Killifish</h4>
+                <div class="amount">10–15</div>
+                <div class="detail">Per feeding, 3–5× weekly. Use juvenile daphnia (&lt;2mm) for very small species (chili rasbora, ember tetra, etc).</div>
+            </div>
+            <div class="species-card">
+                <h4>🐟 Guppies &amp; Livebearers</h4>
+                <div class="amount">15–20</div>
+                <div class="detail">Per feeding, 3–4× weekly. Mid-size daphnia. Excellent for conditioning females before breeding.</div>
+            </div>
+            <div class="species-card">
+                <h4>🐡 Discus</h4>
+                <div class="amount">20–30</div>
+                <div class="detail">Per feeding, 4–5× weekly. High protein demand. Daphnia are ideal conditioning food 2–4 weeks before breeding.</div>
+            </div>
+            <div class="species-card">
+                <h4>🐟 Angelfish</h4>
+                <div class="amount">15–25</div>
+                <div class="detail">Per feeding, 3–4× weekly. Adult D. magna size is appropriate. Improves coloration with regular feeding.</div>
+            </div>
+            <div class="species-card">
+                <h4>🐠 Tetras &amp; Schooling Fish</h4>
+                <div class="amount">20–30 / tank</div>
+                <div class="detail">Per tank per feeding, 3–4× weekly. Distribute across multiple areas so all fish get access. Use adult daphnia.</div>
+            </div>
+            <div class="species-card">
+                <h4>🐟 Medium Cichlids</h4>
+                <div class="amount">25–40</div>
+                <div class="detail">Per feeding, 3–4× weekly. Larger species need multiple adult daphnia to register as a meaningful meal.</div>
+            </div>
+            <div class="species-card">
+                <h4>🐣 Fish Fry (2+ weeks old)</h4>
+                <div class="amount">10–20 juveniles</div>
+                <div class="detail">Per fry tank, 3–4× daily. Use only JUVENILE daphnia or D. moina. Adult D. magna are too large for most newborn fry.</div>
+            </div>
+        </div>
+
+        <div class="pro-tip">💡 <strong>General rule:</strong> If you don't see your fish actively hunting and consuming daphnia within 5 minutes, you may be feeding the wrong size. D. magna adults (3–5mm) are too large for many small and nano fish — switch to D. moina or juvenile D. magna for these species.</div>
+
+        <h3>Size-Matching Guide</h3>
+        <table class="data-table">
+            <thead><tr><th>Fish Size</th><th>Daphnia Size</th><th>Source</th></tr></thead>
+            <tbody>
+                <tr><td>Newborn fry (0–1 week)</td><td>Not yet — use rotifers first</td><td>Rotifers are better for first-feeding fish. Micro-daphnia (&lt;0.5mm) only if available.</td></tr>
+                <tr><td>Fry 1–3 weeks old</td><td>Juvenile daphnia (0.5–1.5mm)</td><td>D. moina adults or D. magna juveniles harvested through fine 150µm mesh</td></tr>
+                <tr><td>Small fish &lt;1 inch</td><td>Juvenile daphnia (1–2mm)</td><td>Coarse mesh harvest that allows adults to escape</td></tr>
+                <tr class="good-row"><td>Medium fish 1–2.5 inches</td><td>Mix of juvenile and adult</td><td>Standard net sweep — mix of sizes is ideal</td></tr>
+                <tr class="good-row"><td>Fish 2.5+ inches</td><td>Adult daphnia (3–5mm)</td><td>Standard 500µm mesh — targets largest individuals</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Daphnia as a Digestive Aid (The Fish Laxative)</h3>
+        <p>The chitinous exoskeleton of Daphnia acts as dietary fiber for fish, helping clear the digestive tract. Daphnia are widely recommended in the aquarium community as a treatment for constipated fish, fish with swim bladder issues related to diet, and fish prone to bloat.</p>
+        <ul>
+            <li>Feed live or frozen daphnia exclusively for 2–3 days to constipated fish</li>
+            <li>Particularly effective for goldfish, bettas, and cichlids prone to overeating dry food</li>
+            <li>A weekly daphnia feeding day as part of a varied diet prevents constipation proactively</li>
+        </ul>
+
+        <h3>Breeding Conditioning with Daphnia</h3>
+        <p>Live foods, especially daphnia, are the most reliable way to trigger breeding behavior in most freshwater fish. The high protein content promotes gonad development in both males and females, and the hunting/feeding behavior stimulates hormonal responses associated with spawning.</p>
+        <div class="pro-tip">💡 <strong>Conditioning protocol:</strong> Feed daphnia 4–6× weekly for 2–4 weeks leading up to a planned spawn. Combine with appropriate water changes and temperature adjustments for your species. Discus, angelfish, bettas, cichlids, and most cyprinids (goldfish, koi, barbs, danios) respond strongly to daphnia conditioning.</div>
+
+        <div class="expert-only">
+            <div class="expert-callout">
+                <h4><span class="expert-badge">Expert</span> Nutritional Comparison: Live vs. Frozen vs. Freeze-Dried</h4>
+                <p>Live daphnia: ~50% protein (dry weight), full enzymatic activity, active chitin, live movement triggers maximum predatory response. This is the gold standard.</p>
+                <p>Frozen daphnia: Similar protein (~50%), enzymes mostly destroyed, chitin intact, no live movement trigger. Still an excellent food; loses approximately 20–30% of immunostimulant compounds during freezing. Freeze in thin layers in ice cube trays for convenient daily portions.</p>
+                <p>Freeze-dried daphnia: Protein roughly preserved but fatty acids oxidize during drying. Minimal live food benefit. Use only as a convenience supplement, never as a primary food source. The nutritional gap between live and freeze-dried is significant — live culture is always superior.</p>
+            </div>
+        </div>
+    </div>
+</section><!-- ===== SECTION 7: CALCULATOR ===== -->
+<section id="calculator" class="section">
+    <div class="card">
+        <h2>Deep Analytics &amp; Feeding Calculator</h2>
+        <p>Enter your culture volume to get precise recommendations for population targets, harvest amounts, and feeding doses. All metrics update instantly.</p>
+        <div class="calc-wrapper">
+            <div class="calc-input-group">
+                <label style="font-weight:700; font-size:1.1rem;">Culture Volume:</label>
+                <input type="number" id="calc-vol" value="20" min="0.5" step="0.5">
+                <select id="unit-toggle">
+                    <option value="L">Liters</option>
+                    <option value="G">Gallons</option>
+                </select>
+            </div>
+            <div class="metrics-grid">
+                <div class="metric-box">
+                    <div class="metric-label">🦐 Target Population</div>
+                    <div class="metric-val" id="met-density">—</div>
+                    <div class="metric-sub">Max healthy density before crash risk</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">🪣 Harvest Amount</div>
+                    <div class="metric-val" id="met-harvest">—</div>
+                    <div class="metric-sub">25% of population per session</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">🌿 Spirulina Dose</div>
+                    <div class="metric-val" id="met-feed">—</div>
+                    <div class="metric-sub">Grams per feeding (mix in water first)</div>
+                </div>
+                <div class="metric-box">
+                    <div class="metric-label">💧 Water Change Volume</div>
+                    <div class="metric-val" id="met-exchange">—</div>
+                    <div class="metric-sub">20% change — replace with dechlorinated water</div>
+                </div>
+                <div class="metric-box expert-metric expert-only">
+                    <div class="metric-label">🔬 HUFA Pre-Feed Volume</div>
+                    <div class="metric-val" id="met-hufa">—</div>
+                    <div class="metric-sub">mL of HUFAs for gut loading (1ml per liter)</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>14-Day Care Schedule Generator</h2>
+        <p>Generate a personalized 14-day feeding, water change, and harvest schedule based on your setup volume.</p>
+        <div class="calc-wrapper">
+            <div class="calc-input-group">
+                <label style="font-weight:700;">Start Date:</label>
+                <input type="date" id="calc-date" style="width:auto; padding:10px;">
+                <button class="btn-primary" id="btn-genschedule">Generate Schedule</button>
+            </div>
+        </div>
+        <div id="schedule-container" style="margin-top:20px;">
+            <table style="width:100%; border-collapse:collapse;">
+                <thead>
+                    <tr>
+                        <th style="background:rgba(14,165,233,0.15); color:var(--accent-secondary); padding:12px 15px; text-align:left; border-bottom:2px solid rgba(14,165,233,0.3);">Date</th>
+                        <th style="background:rgba(14,165,233,0.15); color:var(--accent-secondary); padding:12px 15px; text-align:left; border-bottom:2px solid rgba(14,165,233,0.3);">Recommended Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-body"></tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<!-- ===== SECTION 8: TROUBLESHOOTING ===== -->
+<section id="troubleshooting" class="section">
+    <div class="card">
+        <h2>Advanced Diagnostic Tree</h2>
+        <p>Use this interactive diagnostic tool to identify what's happening to your culture. Click the symptom that most closely matches what you're observing to get a detailed diagnosis and action plan.</p>
+
+        <div class="img-container">
+            <img src="crashed_cloudy_tank.png" alt="A crashed, milky-white cloudy daphnia culture tank">
+            <div class="img-caption">A culture in bacterial bloom crisis — milky opaque water, dead daphnia at bottom, foul odor. Requires immediate emergency water change.</div>
+        </div>
+
+        <div id="diagnostic-tree"></div>
+    </div>
+
+    <div class="card">
+        <h2>Crash Reference: Symptom → Cause → Fix</h2>
+        <p>Quick reference for the most common culture problems. Use this when you need an answer fast.</p>
+        <table class="data-table">
+            <thead><tr><th>What You See</th><th>Most Likely Cause</th><th>Immediate Action</th></tr></thead>
+            <tbody>
+                <tr><td>Water milky/cloudy, won't clear for 24+ hrs</td><td>Bacterial bloom from overfeeding</td><td>Stop feeding. 50–75% emergency water change. Wait for water to clear before feeding again at 50% of previous dose.</td></tr>
+                <tr><td>Daphnia swarming at water surface</td><td>Oxygen depletion</td><td>Increase aeration immediately. Stop feeding. Do 50% water change. Check temperature — above 26°C is danger zone.</td></tr>
+                <tr><td>Daphnia turning bright red or pink</td><td>Hemoglobin production = dying of suffocation</td><td>Emergency aeration increase. Move to cooler location. Do NOT feed — metabolism consumes more O₂.</td></tr>
+                <tr class="danger-row"><td>Daphnia turning opaque white, reproduction stops</td><td>Microsporidia / Pasteuria parasitic infection</td><td>Culture is unsalvageable. Cull immediately. Bleach and sterilize container. Restart from clean stock.</td></tr>
+                <tr><td>Population dropping with clear water, no obvious cause</td><td>Chlorine exposure OR copper contamination OR soft water molting failure</td><td>Test copper and pH/hardness. Check if last water change was dechlorinated. Add crushed coral if water is soft.</td></tr>
+                <tr><td>Males appearing in culture (small, elongated individuals)</td><td>Overcrowding, food scarcity, or temperature stress triggering sexual reproduction</td><td>Increase water changes. Increase feeding slightly. Check temperature. Harvest 20–25% of population.</td></tr>
+                <tr><td>Water turns brown, green water dying</td><td>Algae crash — overfeeding, contamination, or sudden parameter shift</td><td>50% water change. Reduce feeding. Check parameters. Restart green water culture from scratch.</td></tr>
+                <tr><td>Fuzzy growths visible on daphnia bodies</td><td>Vorticella or other epibiont protozoans</td><td>Increase water change frequency. Add a micro-dose of green water to improve culture microbiome.</td></tr>
+                <tr><td>Small tentacled organisms on glass walls</td><td>Hydra infestation</td><td>See Pests &amp; Predators section below. Treat with salt or mebendazole, or discard and restart.</td></tr>
+                <tr><td>Culture was thriving, then suddenly crashed after a heat wave</td><td>Thermal stress / oxygen depletion in warm water</td><td>Move culture to cool location. Increase aeration. Check if ephippia are on bottom — can restart culture. Adjust backup plan for summer.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Pests &amp; Predators</h2>
+        <p>Uninvited guests in your culture range from mildly annoying to immediately lethal. Knowing what you are looking at determines how you respond.</p>
+        <div class="img-container">
+            <img src="diagnostic_microscope.png" alt="Microscope view of daphnia culture organisms">
+            <div class="img-caption">A magnifying glass or cheap USB microscope reveals the hidden world in your culture — pests, parasites, and predators invisible to the naked eye.</div>
+        </div>
+        <table class="data-table">
+            <thead><tr><th>Pest</th><th>Appearance</th><th>Threat Level</th><th>Treatment</th></tr></thead>
+            <tbody>
+                <tr class="danger-row">
+                    <td><strong>Hydra</strong></td>
+                    <td>Tiny tentacled polyps (2–15mm) attached to glass walls or substrate. Usually white, brown, or green.</td>
+                    <td>🔴 SEVERE — actively hunts and kills daphnia, especially juveniles. Will devastate a culture within 1–2 weeks.</td>
+                    <td>
+                        <strong>Option 1 (Mild):</strong> Salt treatment — add aquarium salt gradually to 2–3 g/L. Hydra are salt-sensitive; daphnia tolerate this level. Hold for 24 hrs, then do 50% water change.<br>
+                        <strong>Option 2 (Moderate):</strong> Mebendazole (fenbendazole) — used at very low doses, appears daphnia-safe while killing hydra. Research protocol before attempting.<br>
+                        <strong>Option 3 (Severe):</strong> Discard culture, bleach container, restart with clean stock.
+                    </td>
+                </tr>
+                <tr class="danger-row">
+                    <td><strong>Planaria (Flatworms)</strong></td>
+                    <td>Flat, soft-bodied worms 2–15mm, usually white or brown, crawling on glass. Arrow-shaped head visible under magnification.</td>
+                    <td>🔴 SEVERE — will eat juvenile daphnia and crash culture productivity.</td>
+                    <td>Discard the culture. Bleach and sterilize the container thoroughly. Restart from verified clean stock. Planaria are very difficult to eliminate without discarding.</td>
+                </tr>
+                <tr class="danger-row">
+                    <td><strong>Predatory Copepods (Cyclops)</strong></td>
+                    <td>Very small crustaceans (1–2mm) moving in rapid, jerky hops. Often more visible than daphnia because they move faster.</td>
+                    <td>🔴 HIGH — eat juvenile daphnia faster than they are born. Will completely prevent culture recovery.</td>
+                    <td>Discard and restart. Prevention is the only real solution — never introduce culture water from unknown sources.</td>
+                </tr>
+                <tr class="warn-row">
+                    <td><strong>Mosquito Larvae</strong></td>
+                    <td>Wriggling larvae hanging just below water surface. Usually arrive via adult mosquitoes laying eggs in open culture.</td>
+                    <td>🟡 MODERATE — compete for food; can colonize a daphnia-depleted culture during summer dormancy.</td>
+                    <td>Cover culture with fine mesh screen to prevent oviposition. Remove visible larvae by net or turkey baster. Maintain high daphnia density (daphnia outcompete larvae for food).</td>
+                </tr>
+                <tr>
+                    <td><strong>Ostracods (Seed Shrimp)</strong></td>
+                    <td>Tiny bean-shaped crustaceans (0.5–2mm) swimming near edges. Look like tiny seeds moving through water.</td>
+                    <td>⚪ LOW — generally harmless. Can compete for food in large numbers.</td>
+                    <td>Usually no action needed. If overwhelming the culture, increase water change frequency and reduce feeding to suppress their numbers. Fish eat them readily — a bonus snack.</td>
+                </tr>
+                <tr>
+                    <td><strong>Rotifers</strong></td>
+                    <td>Microscopic (invisible to naked eye). Culture water may appear more "active" under magnification.</td>
+                    <td>⚪ VERY LOW — beneficial scavengers in small numbers. Only compete with juvenile daphnia at very high densities.</td>
+                    <td>No action needed in most cases. Regular water changes naturally control rotifer populations.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>Crash-Proofing Your Culture System</h2>
+        <p>The goal is not to avoid every crash — it is to build a system where crashes don't end your supply. Every experienced daphnia culturer has crashed cultures. The difference between beginners who quit and experts who succeed is redundancy.</p>
+
+        <div class="img-container">
+            <img src="frozen_daphnia_cubes.png" alt="Frozen daphnia in ice cube trays as emergency backup">
+            <div class="img-caption">Frozen daphnia cubes — your absolute last line of defense. When everything crashes at once, thawed frozen daphnia keep your fish fed while you rebuild cultures.</div>
+        </div>
+
+        <h3>The Backup System</h3>
+        <table class="data-table">
+            <thead><tr><th>Setup Size</th><th>Recommended Backups</th><th>Maintenance Level</th></tr></thead>
+            <tbody>
+                <tr><td>1 main culture (feeding 1 tank)</td><td>1 spare 5-gal bucket, fed every 3–4 days</td><td>Minimal — check weekly, water change every 5 days</td></tr>
+                <tr><td>2–3 main cultures (small breeding room)</td><td>2 backups at different growth stages</td><td>Low — rotate through backup cultures as you harvest mains</td></tr>
+                <tr><td>4+ main cultures (large operation)</td><td>2–3 backups + frozen daphnia reserve + dried ephippia vial</td><td>Moderate — stagger start dates by 2–4 weeks for continuous production</td></tr>
+            </tbody>
+        </table>
+
+        <h3>Your Emergency Crash Kit</h3>
+        <p>Keep these items ready at all times so you can respond to a crash within hours, not days:</p>
+        <ul>
+            <li>✅ Pre-aged, dechlorinated water (several gallons in a covered bucket)</li>
+            <li>✅ 2–3 clean spare containers (HDPE buckets or jars)</li>
+            <li>✅ Spirulina powder in a sealed jar</li>
+            <li>✅ Backup air pump + spare air stone + extra tubing</li>
+            <li>✅ Fine mesh net (for isolating survivors from a crashing culture)</li>
+            <li>✅ Crushed coral (small bag — for quick hardness and pH stabilization)</li>
+            <li>✅ Sodium thiosulfate or commercial dechlorinator</li>
+            <li>✅ Vial of dried ephippia from a previous culture (your final failsafe — these can restart a culture months later)</li>
+            <li>✅ Frozen daphnia cubes in freezer (absolute last resort food supply while cultures recover)</li>
+        </ul>
+
+        <h3>Seasonal Management Guide</h3>
+        <table class="data-table">
+            <thead><tr><th>Season</th><th>Main Challenge</th><th>Adjustments</th></tr></thead>
+            <tbody>
+                <tr><td>🌸 Spring</td><td>Temperature fluctuations as seasons change</td><td>Ideal time to start new backup cultures. Increase feeding gradually as temps rise. Excellent production season.</td></tr>
+                <tr class="warn-row"><td>☀️ Summer</td><td>Heat waves crashing cultures; oxygen depletion</td><td>Move outdoor cultures indoors before any forecast above 28°C. Increase aeration. Reduce feeding slightly. Monitor daily during heat events.</td></tr>
+                <tr><td>🍂 Fall</td><td>Shortening days may trigger ephippia production</td><td>Supplement with artificial lighting on a timer to maintain 12+ hrs/day. Collect ephippia from any crashing cultures as emergency stock.</td></tr>
+                <tr><td>❄️ Winter</td><td>Low temps slow reproduction; cold shock from water changes</td><td>Match water change water temperature carefully. May need aquarium heater in very cold rooms. Reduce feeding frequency. Indoor cultures in heated rooms are largely unaffected.</td></tr>
+            </tbody>
+        </table>
+
+        <div class="expert-only">
+            <div class="expert-callout">
+                <h4><span class="expert-badge">Expert</span> The Ephippia Recovery Protocol</h4>
+                <p>When a culture crashes completely, check the bottom of the container before discarding everything. Black or dark brown saddle-shaped cysts attached to dead daphnia or substrate are ephippia — viable resting eggs that can restart your culture.</p>
+                <p><strong>Recovery procedure:</strong></p>
+                <ol style="margin-left:20px; margin-top:10px;">
+                    <li>Allow the crashed culture to dry completely in a cool, dark location (2–4 weeks)</li>
+                    <li>Store dried material in a sealed vial or small bag for up to 6 months</li>
+                    <li>When ready to restart: fill a clean container with prepared water (same parameters as normal culture)</li>
+                    <li>Add dried material including ephippia to the container</li>
+                    <li>Place under 12–16 hours of light at 18–22°C</li>
+                    <li>First hatchlings should appear within 2–7 days</li>
+                    <li>Feed very lightly until population establishes (2–3 weeks to first harvest)</li>
+                </ol>
+                <p>Ephippia can survive freezing, drying, and dormancy for years in nature. Yours may hatch even after months of storage.</p>
+            </div>
+        </div>
+    </div>
+</section>
+</div><!-- end content-container -->
+</main><!-- end content -->
+
+<script src="js/app.js"></script>
+<script>
+// Size tab switcher for containers section
+function showSize(id) {
+    document.querySelectorAll('.size-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.size-tab').forEach(t => t.classList.remove('active'));
+    const panel = document.getElementById('size-' + id);
+    if (panel) panel.classList.add('active');
+    event.target.classList.add('active');
+}
+
+// Expert mode toggle label
+document.addEventListener('DOMContentLoaded', function() {
+    const toggle = document.getElementById('modeToggle');
+    const label = document.getElementById('mode-text');
+    if (toggle && label) {
+        toggle.addEventListener('change', function() {
+            label.textContent = toggle.checked ? 'Expert Mode' : 'Beginner Mode';
+            document.body.classList.toggle('expert-mode', toggle.checked);
         });
-
-        // Expert Toggle
-        const modeToggle = document.getElementById('modeToggle');
-        modeToggle.addEventListener('change', () => {
-            if (modeToggle.checked) {
-                document.body.classList.add('expert-mode');
-            } else {
-                document.body.classList.remove('expert-mode');
-            }
-        });
-
-        // Mobile Menu
-        const sidebar = document.getElementById('sidebar');
-        function toggleMobileMenu() {
-            sidebar.classList.toggle('open');
-        }
-
-        // Calculator
-        const calcVol = document.getElementById('calc-vol');
-        const unitToggle = document.getElementById('unit-toggle');
-        const mDensity = document.getElementById('met-density');
-        const mHarvest = document.getElementById('met-harvest');
-        const mFeed = document.getElementById('met-feed');
-        const mExchange = document.getElementById('met-exchange');
-        const mHufa = document.getElementById('met-hufa');
-
-        function updateCalc() {
-            let v = parseFloat(calcVol.value);
-            if (isNaN(v) || v <= 0) return;
-
-            // Convert to liters for internal math if gallons is selected
-            const isGallons = unitToggle.value === 'G';
-            const liters = isGallons ? v * 3.78541 : v;
-
-            const den = Math.floor(liters * 500);
-            const harv = Math.floor(den * 0.25);
-            const feed = (liters * 0.0025).toFixed(3);
-            const exchL = (liters * 0.20);
-            const hufaL = (liters * 1.0);
-
-            mDensity.innerText = den.toLocaleString();
-            mHarvest.innerText = harv.toLocaleString();
-            mFeed.innerText = `${feed}g`;
-            mExchange.innerText = isGallons ? `${(exchL / 3.78541).toFixed(1)} Gal` : `${exchL.toFixed(1)} L`;
-            mHufa.innerText = `${hufaL.toFixed(1)} ml`;
-        }
-        calcVol.addEventListener('input', updateCalc);
-        unitToggle.addEventListener('change', () => {
-            if (unitToggle.value === 'G' && calcVol.value === '20') calcVol.value = '5';
-            if (unitToggle.value === 'L' && calcVol.value === '5') calcVol.value = '20';
-            updateCalc();
-        });
-        updateCalc();
-
-        // Diagnostic Tree
-        const treeData = {
-            start: {
-                q: "What is the physical appearance of the problem?",
-                opts: [
-                    { text: "Water is incredibly cloudy, milky, or smells foul.", next: "cloudy" },
-                    { text: "Daphnia are turning bright red or pink.", next: "pink" },
-                    { text: "Daphnia are turning opaque, milk-white, and ceasing reproduction.", next: "microsporidia" },
-                    { text: "White fuzzy growths are attaching to the Daphnia.", next: "fungal" },
-                    { text: "Water is crystal clear, but Daphnia are dying or vanishing.", next: "clear_dead" }
-                ]
-            },
-            cloudy: {
-                res: "Bacterial Bloom / Ammonia Spike",
-                desc: "An over-accumulation of yeast or dead organic matter has caused a massive bacterial explosion. These bacteria consume all available DO (dissolved oxygen) and release toxic ammonia. The LC50 is rapidly approaching.",
-                act: "Perform an immediate 50% water change. Cease all feeding until the water is completely clear again. Ensure snails are present to eat bottom-decay.",
-                danger: true
-            },
-            pink: {
-                res: "Lethal Heat Stress / Anoxia",
-                desc: "Daphnia only produce hemoglobin to turn red/pink when dying of suffocation. This almost always correlates with temperatures rising above 25°C, stripping the water's oxygen carrying capacity.",
-                act: "Move the culture to a lower, cooler location. Increase the rolling aeration immediately. Do not feed, as food metabolism costs oxygen.",
-                danger: true
-            },
-            microsporidia: {
-                res: "Microsporidia / Pasteuria ramosa Infection",
-                desc: "An aggressive parasitic bacterial/spore infection. Affected Daphnia become sterile, turn completely opaque white, and spread spores upon death. It is highly contagious.",
-                act: "The culture cannot be saved. Cull the entire batch immediately to prevent cross-contamination. Bleach/sterilize the container and restart with a new, healthy seed culture.",
-                danger: true
-            },
-            fungal: {
-                res: "Epibiont / Vorticella Outbreak",
-                desc: "Fuzzy growths are usually protozoans like Vorticella using the Daphnia as a ride. While not strictly a disease, dense infestations weigh the Daphnia down and inhibit filter feeding, usually caused by foul water high in dissolved organics.",
-                act: "Increase water changes to lower dissolved organics. Adding a micro-dose of high-quality green water can help stabilize the biome.",
-                danger: false
-            },
-            clear_dead: {
-                q: "What is the recent history of the clear tank?",
-                opts: [
-                    { text: "I just used tap water for a water change.", next: "chlorine" },
-                    { text: "I haven't fed them in weeks.", next: "starve" },
-                    { text: "I use pure Reverse Osmosis (RO) water without remineralizing.", next: "soft" }
-                ]
-            },
-            chlorine: {
-                res: "Chloramine Toxicity",
-                desc: "Total catastrophic failure. Tap water disinfectants disintegrate micro-fauna.",
-                act: "Add dechlorinator instantly. Check the detritus for black Ephippia resting cysts—leave the tank alone for a month, they may hatch and reboot automatically.",
-                danger: true
-            },
-            starve: {
-                res: "Total Starvation",
-                desc: "They ran out of phytoplankton or yeast to filter. Reproductive shutdown triggered.",
-                act: "Restart a rigorous, careful feeding schedule.",
-                danger: false
-            },
-            soft: {
-                res: "Ecdysozoan Molting Failure (Low GH/KH)",
-                desc: "Crustaceans require calcium to shed their carapace. In water under 90mg/L CaCO3, they get stuck in their own exoskeleton during the molt and die rapidly. Water goes clear because they stop eating.",
-                act: "Add crushed coral, a pinch of plaster of Paris, or specialized remineralizing salts (like SaltyShrimp Shrimp Mineral GH/KH+) to hit appropriate hardness.",
-                danger: true
-            }
-        };
-
-        const treeArea = document.getElementById('diagnostic-tree');
-        function drawTree(id) {
-            treeArea.innerHTML = '';
-            const node = treeData[id];
-
-            if (node.q) {
-                const head = document.createElement('div');
-                head.className = 'tree-q';
-                head.innerText = node.q;
-                treeArea.appendChild(head);
-
-                node.opts.forEach(opt => {
-                    const b = document.createElement('button');
-                    b.className = 'tree-btn';
-                    b.innerText = opt.text;
-                    b.onclick = () => drawTree(opt.next);
-                    treeArea.appendChild(b);
-                });
-
-                if (id !== 'start') {
-                    const r = document.createElement('div');
-                    r.style.marginTop = "20px";
-                    r.style.color = "var(--accent-secondary)";
-                    r.style.cursor = "pointer";
-                    r.style.fontWeight = "bold";
-                    r.innerText = "← Restart Diagnostics";
-                    r.onclick = () => drawTree('start');
-                    treeArea.appendChild(r);
-                }
-            } else if (node.res) {
-                const res = document.createElement('div');
-                res.className = `tree-res ${node.danger ? 'danger' : ''}`;
-                res.innerHTML = `
-                    <h3>${node.res}</h3>
-                    <p style="margin-bottom:15px; color:#cbd5e1;"><strong>Mechanism:</strong> ${node.desc}</p>
-                    <p style="color:#f8fafc;"><strong>${node.act}</strong></p>
-                    <br>
-                    <span style="color:var(--accent-primary); cursor:pointer; font-weight:bold;" onclick="drawTree('start')">↺ Restart Diagnostics</span>
-                `;
-                treeArea.appendChild(res);
-            }
-        }
-        drawTree('start');
-    </script>
+    }
+});
+</script>
 </body>
-
 </html>

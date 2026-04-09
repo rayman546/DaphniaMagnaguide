@@ -1,6 +1,7 @@
+// @vitest-environment jsdom
 import app from '../js/app.js';
-const { calculateMetrics, treeData } = app;
-import { describe, test, expect } from 'vitest';
+const { calculateMetrics, treeData, saveSettings, loadSettings, generateSchedule } = app;
+import { describe, test, expect, beforeEach } from 'vitest';
 
 describe('calculateMetrics', () => {
     test('returns null for invalid or <= 0 volume', () => {
@@ -19,12 +20,10 @@ describe('calculateMetrics', () => {
     });
 
     test('calculates correct metrics for 5 Gallons', () => {
-        // 5 Gallons = 18.92705 Liters
         const result = calculateMetrics(5, 'G');
         expect(result.density).toBe(9463);
         expect(result.harvest).toBe(2365);
         expect(result.feed).toBe(0.047);
-        // exchange ~3.78 L -> 1 Gal
     });
 });
 
@@ -38,5 +37,39 @@ describe('treeData', () => {
     test('has danger nodes configured properly', () => {
         expect(treeData.cloudy.danger).toBe(true);
         expect(treeData.fungal.danger).toBe(false);
+    });
+});
+
+describe('LocalStorage & Settings', () => {
+    beforeEach(() => {
+        localStorage.clear();
+    });
+
+    test('loadSettings returns null if empty', () => {
+        expect(loadSettings()).toBeNull();
+    });
+
+    test('saveSettings and loadSettings work properly', () => {
+        saveSettings(10, 'G');
+        const settings = loadSettings();
+        expect(settings.volume).toBe(10);
+        expect(settings.unit).toBe('G');
+    });
+});
+
+describe('14-day Schedule Logic', () => {
+    test('generateSchedule returns 14 days of events', () => {
+        const start = new Date('2026-04-01T12:00:00Z');
+        const schedule = generateSchedule(start, 20, 'L');
+        
+        expect(schedule.length).toBe(14);
+        expect(schedule[0].date.toISOString().startsWith('2026-04-01')).toBe(true);
+        expect(schedule[0].action).toContain('Feed');
+        
+        // Day 4 (index 3) should include harvest
+        expect(schedule[3].action).toContain('Harvest');
+        
+        // Day 7 (index 6) should include water change
+        expect(schedule[6].action).toContain('Water Change');
     });
 });
